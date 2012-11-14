@@ -1,12 +1,16 @@
 <?php
 	include_once 'lib/koneksi.php';
+  include_once 'config/config.php';
 	
 	class session{
-		$koneksi = new koneksi;
+		
 	
 		public function cek_login($usename, $password){
-			$sql = mysql_query("select kd_user where username='$username' and password='$password');
-			$user
+      $koneksi = new koneksi;
+      $koneksi->connect();
+			$sql = mysql_query("select kd_user where username='$username' and password='$password'");
+			$user_data = mysql_fetch_array($sql);
+      echo $user_data['name'];
 		}
 	}
 ?>
