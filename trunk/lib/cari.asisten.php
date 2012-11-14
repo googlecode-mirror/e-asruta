@@ -23,8 +23,9 @@ class CariAsisten_Dao{
 	function _close(){
 		mysql_close($this->db);
 	}
-
-	function add(CariAsisten $cari){
+	
+	//fungsi untuk menambahkan pencarian asisten rumah tangga
+	function tambahPencarian(CariAsisten $cari){
 		
 		$this->_connect();
 		
@@ -58,7 +59,8 @@ class CariAsisten_Dao{
 	
 	}
 	
-	function get($id){
+	//fungsi untuk menampilkan pencarian asisten rumah tangga berdasarkan id pencarian asisten rumah tangga
+	function cariPencarian($id){
 	
 		$this->_connect();
 		
@@ -94,7 +96,8 @@ class CariAsisten_Dao{
 		return $cari;
 	}
 	
-	function get_all(){
+	//fungsi untuk menampilkan semua pencarian asisten rumah tangga yang telah disubmit majikan
+	function tampilSemuaCari(){
 	
 		$this->_connect();
 		
@@ -131,6 +134,7 @@ class CariAsisten_Dao{
 	
 	}
 	
+	//fungsi untuk menghapus pencarian asisten rumah tangga yang telah disubmit majikan
 	function hapusPencarian($id){
 	
 		$this->_connect();
