@@ -1,33 +1,12 @@
 <?php
+incluce '../lib/koneksi.php';
 
 class CariAsisten_Dao{
-
-	var $host;
-	var $user;
-	var $pass;
-	var $dbnm;
-	var $db;
-	
-	function __construct($host,$user,$pass,$dbnm){
-		$this->host = $host;
-		$this->user = $user;
-		$this->pass = $pass;
-		$this->dbnm = $dbnm;
-	}
-	
-	function _connect(){
-		$this->db = mysql_connect($this->host,$this->user,$this->pass);
-		mysql_select_db($this->dbnm,$this->db);
-	}
-	
-	function _close(){
-		mysql_close($this->db);
-	}
 	
 	//fungsi untuk menambahkan pencarian asisten rumah tangga
 	function tambahPencarian(CariAsisten $cari){
-		
-		$this->_connect();
+		$koneksi = new Koneksi();
+		$koneksi->connect();
 		
 		$sql = "
 			INSERT 
@@ -55,14 +34,15 @@ class CariAsisten_Dao{
 		
 		$cari->id = mysql_insert_id($db);
 		
-		$this->_close();
+		$koneksi->_close();
 	
 	}
 	
 	//fungsi untuk menampilkan pencarian asisten rumah tangga berdasarkan id pencarian asisten rumah tangga
 	function cariPencarian($id){
 	
-		$this->_connect();
+		$koneksi = new Koneksi();
+		$koneksi->connect();
 		
 		$sql = "
 		SELECT
@@ -91,15 +71,15 @@ class CariAsisten_Dao{
 		
 		}
 		
-		$this->_close();
+		$koneksi->close();
 		
 		return $cari;
 	}
 	
 	//fungsi untuk menampilkan semua pencarian asisten rumah tangga yang telah disubmit majikan
 	function tampilSemuaCari(){
-	
-		$this->_connect();
+		$koneksi = new Koneksi();
+		$koneksi->connect();
 		
 		$sql = "
 		SELECT
@@ -128,7 +108,7 @@ class CariAsisten_Dao{
 			}
 		}
 		
-		$this->_close();
+		$koneksi->close();
 		
 		return $list_cari;
 	
@@ -136,8 +116,8 @@ class CariAsisten_Dao{
 	
 	//fungsi untuk menghapus pencarian asisten rumah tangga yang telah disubmit majikan
 	function hapusPencarian($id){
-	
-		$this->_connect();
+		$koneksi = new Koneksi();
+		$koneksi->_connect();
 		
 		$sql = "
 		DELETE
@@ -149,7 +129,7 @@ class CariAsisten_Dao{
 		
 		mysql_query($sql,$this->db);
 		
-		$this->_close();
+		$koneksi->_close();
 	
 	}
 	
