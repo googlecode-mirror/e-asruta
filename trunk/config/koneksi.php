@@ -1,19 +1,35 @@
-
 <?php
-        
 class Koneksi{
-        var $host ='127.0.0.1';
-        var $user ='root';
-        var $pass ='';
-        var $db ='e_asruta';
-     
-        function _connect(){
-            $connect = mysql_connect($this->host, $this->user, $this->pass);
-            if($connect) {
-			$pilihdb= mysql_select_db($this->db);                             
-        }
-        
-        function _disconnect(){
-            $close = mysql_close();
-        }      
+var $db_host='localhost';
+var $db_name='e_asruta';
+var $db_username='root';
+var $db_pass='';
+
+	//Melakukan login kedalam database
+	function konekdb(){
+		$koneksi=mysql_connect($this->db_host,$this->db_username,$this->db_pass);
+		if(!$koneksi){
+			die ("Tidak bisa login ke database".mysql_error());
+		}		
+	}
+	
+	//Memilih nama database
+	function pilihdb(){
+		$db_select=mysql_select_db($this->db_name);
+		if(!$db_select){
+			die ("Tidak bisa memilih database".mysql_error());
+		}
+	}
+	
+	//Memutus koneksi dengan database
+	function tutupdb(){
+		$tutup = mysql_close() or die ("Tidak bisa memutus koneksi ke database");
+		return $tutup;
+	}
+	
+	//Login ke database dan memilih database
+	function pilihkonekdb(){
+		$this->konekdb();
+		$this->pilihdb();
+	}
 }
