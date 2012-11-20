@@ -1,5 +1,5 @@
 <?php
-incluce '../lib/koneksi.php';
+incluce '../config/koneksi.php';
 
 class CariAsisten_Dao{
 	
