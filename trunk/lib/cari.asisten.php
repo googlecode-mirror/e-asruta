@@ -6,7 +6,7 @@ class CariAsisten_Dao{
 	//fungsi untuk menambahkan pencarian asisten rumah tangga
 	function tambahPencarian(CariAsisten $cari){
 		$koneksi = new Koneksi();
-		$koneksi->connect();
+		$koneksi->pilihkonekdb();
 		
 		$sql = "
 			INSERT 
@@ -34,7 +34,7 @@ class CariAsisten_Dao{
 		
 		$cari->id = mysql_insert_id($db);
 		
-		$koneksi->_close();
+		$koneksi->tutupdb();
 	
 	}
 	
@@ -42,7 +42,7 @@ class CariAsisten_Dao{
 	function cariPencarian($id){
 	
 		$koneksi = new Koneksi();
-		$koneksi->connect();
+		$koneksi->pilihkonekdb();
 		
 		$sql = "
 		SELECT
@@ -71,7 +71,7 @@ class CariAsisten_Dao{
 		
 		}
 		
-		$koneksi->close();
+		$koneksi->tutupdb();
 		
 		return $cari;
 	}
@@ -79,7 +79,7 @@ class CariAsisten_Dao{
 	//fungsi untuk menampilkan semua pencarian asisten rumah tangga yang telah disubmit majikan
 	function tampilSemuaCari(){
 		$koneksi = new Koneksi();
-		$koneksi->connect();
+		$koneksi->pilihkonekdb();
 		
 		$sql = "
 		SELECT
@@ -108,7 +108,7 @@ class CariAsisten_Dao{
 			}
 		}
 		
-		$koneksi->close();
+		$koneksi->tutupdb();
 		
 		return $list_cari;
 	
@@ -117,7 +117,7 @@ class CariAsisten_Dao{
 	//fungsi untuk menghapus pencarian asisten rumah tangga yang telah disubmit majikan
 	function hapusPencarian($id){
 		$koneksi = new Koneksi();
-		$koneksi->_connect();
+		$koneksi->pilihkonekdb();
 		
 		$sql = "
 		DELETE
@@ -129,7 +129,7 @@ class CariAsisten_Dao{
 		
 		mysql_query($sql,$this->db);
 		
-		$koneksi->_close();
+		$koneksi->tutupdb();
 	
 	}
 	
