@@ -7,4 +7,5 @@ class CariAsisten{
 	var $jam_kerja;
 	var $luas_rumah;
 	var $anggota_kel;
+	var $lokasi;
 }
