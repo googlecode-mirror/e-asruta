@@ -8,7 +8,7 @@
 		public function cek_login($usename, $password){
       $koneksi = new koneksi;
       $koneksi->pilihkonekdb();
-			$sql = mysql_query("select kd_user where username='$username' and password='$password'");
+			$sql = mysql_query("select kd_user from auths where username='$username' and password='$password'");
 			$user_data = mysql_fetch_array($sql);
       $no_rows = mysql_num_rows($result);
 		if ($no_rows == 1) 
