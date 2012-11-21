@@ -1,7 +1,12 @@
 <?php
+  include_once 'lib/koneksi.php';
+  include_once 'config/config.php';
+
 	class Auth {
 		public function login ($username,$password){
-		$sql="select count(*) as jumlah from auth where username='$username' and password='$password'";
+    $koneksi = new koneksi;
+    $koneksi->pilihkonekdb();
+		$sql="select count(*) as jumlah from auths where username='$username' and password='$password'";
 		$search=mysql_query($sql);
 		$row =mysql_fetch_assoc($search);
 		if ($row['jumlah']==1){
