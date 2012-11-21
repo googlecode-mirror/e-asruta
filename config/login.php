@@ -13,15 +13,34 @@ if (isset($_POST['submit1'])){
 	}
 }
 ?>
-<!DOCTYPE HTML>
-<head>
-	
-</head>
-<body>
-	<form action="login.php" name="login" method="post">
-		<input type="text" name="username">
-		<input type="text" name="password">
-		<input type="submit" name="submit1" value="submit">
-	</form>
-	
-</body>
+  <link href="view/bootstrap/css/bootstrap.css" rel="stylesheet">
+	<link href="view/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+	<link rel="stylesheet" href="view/bootstrap/js/bootstrap.min.js" />
+	<link href="view/bootstrap/css/datepicker.css" rel="stylesheet">
+	<form class="form-horizontal" name="input_form" method='post' action='tambah.php' enctype="multipart/form-data">
+			<fieldset>
+
+			<legend>Menu Login</legend>
+			
+			<div class="control-group">
+				<label class="control-label">Username</label>
+					<div class="controls">
+				<input type="text" class="input-xlarge" id="username" name="username" rel="popover" data-content="Masukan Username.">
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Password</label>
+					<div class="controls">
+				<input type="text" class="input-xlarge" id="password" name="password" rel="popover" data-content="Masukan Password.">
+				</div>
+			</div>
+
+			
+			<div class="control-group">
+				<label class="control-label"></label>
+					<div class="controls">
+					<button type="submit" value="Login" class="btn btn-success" >Login</button>
+				</div>
+			</div>
+</form>
