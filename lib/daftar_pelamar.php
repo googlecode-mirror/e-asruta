@@ -30,10 +30,21 @@ class pekerjaan{
     }
     
     // data detail lowongan
-    public function daftar_kerjadetail(){
+    public function daftar_kerjadetail($id_kerja){
         $this->id_kerja = $id_kerja;
         $sql = "SELECT * FROM lowongan WHERE id_kerja = '".id_kerja."'";
         
+        $hasil=mysql_query($sql) or (mysql_error());
+		return mysql_fetch_row($hasil);
+    }
+    
+    // pencarian pekerjaan dengan kategori khusus UC-10
+    public function cari_kerja(){
+        $this->id_kerja = $id_kerja;
+        $this->gaji = $gaji;
+        $this->keterampilan = $keterampilan;
+        
+        $sql = "Select * from lowongan where gaji = '".gaji."', keterampilan = '".keterampilan."'";
         $hasil=mysql_query($sql) or (mysql_error());
 		return mysql_fetch_row($hasil);
     }
