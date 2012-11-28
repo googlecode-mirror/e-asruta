@@ -16,7 +16,7 @@ class CariAsisten_Dao{
 		$sql = "
 			INSERT 
 			INTO
-			cari_asisten
+			lowongan
 			(
 				keterampilan,
 				gaji,
@@ -58,7 +58,7 @@ class CariAsisten_Dao{
 		SELECT
 		*
 		FROM
-		cari_asisten
+		lowongan
 		WHERE
 		id = '".$id."'
 		";
@@ -95,7 +95,7 @@ class CariAsisten_Dao{
 		SELECT
 		*
 		FROM
-		cari_asisten
+		lowongan
 		";
 		
 		$list_cari = array();
@@ -132,7 +132,7 @@ class CariAsisten_Dao{
 		$sql = "
 		DELETE
 		FROM
-		cari_asisten
+		lowongan
 		WHERE
 		id = '".$id."'
 		";
