@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @author Arif Setiyanto
+ * @copyright 2012
+ */
+ 
 class CariAsisten_Dao{
 	
 	//fungsi untuk menambahkan pencarian asisten rumah tangga

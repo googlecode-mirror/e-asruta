@@ -1,4 +1,9 @@
 <?php
+/**
+ * @author Arif Setiyanto
+ * @copyright 2012
+ */
+ 
 require_once '../config/koneksi.php';
 require_once '../lib/cari.asisten.php';
 require_once '../lib/cariasisten_dao.php';
