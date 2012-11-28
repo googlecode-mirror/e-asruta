@@ -28,7 +28,7 @@
 		return $useravailable;
 	}
 	
-	function registrasi(Users $user){
+	function registrasi(Users $users){
 		$koneksi = new Koneksi();
 		
 		$koneksi->pilihkonekdb();
@@ -44,9 +44,9 @@
 		)
 		values
 		(
-			'".$user->username."',
-			'".$user->password."',
-			'".$user->kd_role."'
+			'".$users->username."',
+			'".$users->password."',
+			'".$users->kd_role."'
 			
 		)
 		";
@@ -54,8 +54,24 @@
 		if(!$berhasil){
 			echo "gagal";
 		}
-		$testi->id_testi= mysql_insert_id();
+		$users->id_user= mysql_insert_id();
 		
 		$koneksi->tutupdb();
+	}
+	
+	function gantiPassword($id_users,$password,$password1, $password2){
+		$koneksi = new Koneksi();
+		
+		$koneksi->pilihkonekdb();
+		
+		$sql="
+			select
+			password
+			from 
+			users
+			where
+			kd_users='".$id_user."';
+		";
+		$hasil=mysql_query($sql);
 	}
  }
