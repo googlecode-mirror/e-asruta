@@ -73,5 +73,24 @@
 			kd_users='".$id_user."';
 		";
 		$hasil=mysql_query($sql);
+		
+		if($password!=$hasil){
+			echo "Password lama salah";
+		}
+		if($password1!=$password2){
+			echo "Password baru tidak cocok";
+		}
+		if($hasil==$password AND $password1==$password2){
+			$sql="
+			update
+			users
+			set
+			password='".$passwod1."'
+			where
+			kd_users='".$id_users."' 
+			";
+			mysql_query($sql);
+		}
+		$koneksi->tutupdb();
 	}
  }
