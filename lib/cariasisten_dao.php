@@ -1,11 +1,9 @@
 <?php
-incluce '../config/koneksi.php';
-incluce 'cari.asisten.php';
 
 class CariAsisten_Dao{
 	
 	//fungsi untuk menambahkan pencarian asisten rumah tangga
-	function tambahPencarian(CariAsisten $cari){
+	function tambahPencarian(CariAsisten $cariasisten){
 	
 		$koneksi = new Koneksi();
 		
@@ -22,20 +20,25 @@ class CariAsisten_Dao{
 				jam_kerja;
 				luas_rumah;
 				anggota_kel;
+				lokasi;
 			)
 			VALUES
 			(
-				'".$cari->keterampilan."',
-				'".$cari->gaji."',
-				'".$cari->hari_kerja."',
-				'".$cari->jam_kerja."',
-				'".$cari->luas_rumah."',
-				'".$cari->anggota_kel."'
+				'".$cariasisten->keterampilan."',
+				'".$cariasisten->gaji."',
+				'".$cariasisten->hari_kerja."',
+				'".$cariasisten->jam_kerja."',
+				'".$cariasisten->luas_rumah."',
+				'".$cariasisten->anggota_kel."',
+				'".$cariasisten->lokasi."'
 			)
-		";
-		mysql_query($sql,$db);
+		" ;
+		$berhasil=mysql_query($sql);
+		if(!$berhasil){
+			echo "gagal";
+		}
 		
-		$cari->id = mysql_insert_id($db);
+	//	$cari->id = mysql_insert_id($koneksi->db_name);
 		
 		$koneksi->tutupdb();
 	
@@ -135,4 +138,4 @@ class CariAsisten_Dao{
 		$koneksi->tutupdb();
 	
 	}
-	
+}

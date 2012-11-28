@@ -10,7 +10,10 @@ var $db_pass='';
 		$koneksi=mysql_connect($this->db_host,$this->db_username,$this->db_pass);
 		if(!$koneksi){
 			die ("Tidak bisa login ke database".mysql_error());
-		}		
+		}
+		else{
+			echo "Berhasil konek ke database";
+		}
 	}
 	
 	//Memilih nama database
@@ -18,6 +21,9 @@ var $db_pass='';
 		$db_select=mysql_select_db($this->db_name);
 		if(!$db_select){
 			die ("Tidak bisa memilih database".mysql_error());
+		}
+		else{
+			echo "Berhasil memilih database";
 		}
 	}
 	
