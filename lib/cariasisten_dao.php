@@ -42,7 +42,7 @@ class CariAsisten_Dao{
 			echo "gagal";
 		}
 		
-	//	$cari->id = mysql_insert_id($koneksi->db_name);
+		$cariasisten->id_cariasisten = mysql_insert_id();
 		
 		$koneksi->tutupdb();
 	
