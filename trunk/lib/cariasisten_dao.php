@@ -61,7 +61,7 @@ class CariAsisten_Dao{
 		
 		$cari = false;
 		
-		$res = mysql_query($sql,$this->db);
+		$res = mysql_query($sql);
 		
 		if($res){
 		
@@ -96,7 +96,7 @@ class CariAsisten_Dao{
 		
 		$list_cari = array();
 		
-		$res = mysql_query($sql,$this->db);
+		$res = mysql_query($sql);
 		if($res){
 			while($row = mysql_fetch_assoc($res)){
 			
@@ -133,7 +133,7 @@ class CariAsisten_Dao{
 		id = '".$id."'
 		";
 		
-		mysql_query($sql,$this->db);
+		mysql_query($sql);
 		
 		$koneksi->tutupdb();
 	
