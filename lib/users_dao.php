@@ -15,7 +15,7 @@
 		
 		$sql="
 		select count(username)
-		from users
+		from users where username='".$username."';
 		";
 		$hasil=mysql_query($sql);
 		
