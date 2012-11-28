@@ -1,4 +1,9 @@
 <?php
+/**
+ * @author Arif Setiyanto
+ * @copyright 2012
+ */
+ 
 class Koneksi{
 var $db_host='localhost';
 var $db_name='e_asruta';
