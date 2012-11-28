@@ -14,13 +14,13 @@ class CariAsisten_Dao{
 			INTO
 			cari_asisten
 			(
-				keterampilan;
-				gaji;
-				hari_kerja;
-				jam_kerja;
-				luas_rumah;
-				anggota_kel;
-				lokasi;
+				keterampilan,
+				gaji,
+				hari_kerja,
+				jam_kerja,
+				luas_rumah,
+				anggota_kel,
+				lokasi
 			)
 			VALUES
 			(
