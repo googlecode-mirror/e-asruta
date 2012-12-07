@@ -59,12 +59,20 @@ class pekerjaan{
     }
     
     //**UC-12
-    public function melamar(){
+    public function melamar($id_kerja, $id_asisten){
         $this->id_kerja->$id_kerja;
         $this->id_asisten->id_asisten;
+        $this->lamar->$lamar;
         $this->id_majikan->id_majikan;
         
         $sql = "update kerja set id_asisten = '".$this->id_asisten."' where id_kerja = '".$this->id_kerja."'";
+        
+        $hasil=mysql_query($sql) or (mysql_error());
+    }
+    
+    //hapus lamaran
+    public function hps_lamar($id_kerja){
+        $sql = "delete from kerja where id_kerja=$id_kerja";
         
         $hasil=mysql_query($sql) or (mysql_error());
     }
