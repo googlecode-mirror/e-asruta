@@ -35,5 +35,6 @@ include '../config/waktu.php';
 				</table>
 			</form>
 			</div>
+		</div>
 			
 <?php include 'footer.php'; ?>

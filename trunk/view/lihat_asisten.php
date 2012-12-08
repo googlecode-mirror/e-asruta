@@ -33,4 +33,5 @@ $data=$pencarian->tampilSemuaCari($_SESSION['kduser']);
 				<?php } ?>
 				</table>
 			</div>
+		</div>
 <?php include 'footer.php'; ?>

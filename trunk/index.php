@@ -18,7 +18,7 @@ LIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xh
 				<div class="smalltext" style="padding:13px;"><strong><?php echo $waktunya; ?></strong></div>
 			</div>
 			<div id="topbar">
-				<div align="right" style="padding:12px;" class="smallwhitetext"><a href="#">Home</a> | <a href="#">Sitemap</a> | <a href="#">Contact Us</a></div>
+				<div align="right" style="padding:12px;" class="smallwhitetext"></div>
 			</div>
 		</div>
 		<div id="header" align="center">
@@ -31,9 +31,6 @@ LIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xh
 		</div>
 		<div id="content" align="left">
 			<div id="menu" align="right">
-				<div align="left" style="width:189px; height:8px;"><img src="images/mnu_topshadow.gif" width="189" height="8" alt="mnutopshadow" /></div>
-				
-				<div align="right" style="width:189px; height:8px;"><img src="images/mnu_bottomshadow.gif" width="189" height="8" alt="mnubottomshadow" /></div>
 			</div>
 		<div id="contenttext">
 			<div class="bodytext" style="padding:12px;" align="justify">
@@ -50,13 +47,7 @@ LIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xh
 					</tr>
 				</table>
 			</form>
-			</div>
-			
+			</div>	
 		</div>
-		<div id="footer" class="smallgraytext" align="center">
-			<a href="#">Beranda</a> | <a href="#">Daftar Lowongan Pekerjaan</a> | <a href="#">Pencarian Asisten Pribadi</a> | <a href="#">Testimoni</a> 
-			<br>e_Asruta &copy; 2012<br />
-		</div>
-	</div>
 </body>
 </html>
