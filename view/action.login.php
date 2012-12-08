@@ -23,6 +23,12 @@ if (isset($_POST['submit'])){
 		print_r($_SESSION['kduser']);
 	} 
 	
+	if ($carirole=="asisten"){
+		header('location:../view/halaman_asisten.php');
+		exit();
+		print_r($_SESSION['kduser']);
+	} 
+	
 	else{
 	header('location:gagal.php');
 	exit();
