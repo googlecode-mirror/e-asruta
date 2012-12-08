@@ -12,6 +12,7 @@ if (isset($_POST['submit1'])){
 	exit();
 	}
 }
+
 ?>
   <link href="view/bootstrap/css/bootstrap.css" rel="stylesheet">
 	<link href="view/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">

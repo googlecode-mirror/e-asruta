@@ -17,7 +17,7 @@ var $db_pass='';
 			die ("Tidak bisa login ke database".mysql_error());
 		}
 		else{
-			echo "Berhasil konek ke database";
+	//		echo "Berhasil konek ke database";
 		}
 	}
 	
@@ -28,7 +28,7 @@ var $db_pass='';
 			die ("Tidak bisa memilih database".mysql_error());
 		}
 		else{
-			echo "Berhasil memilih database";
+	//		echo "Berhasil memilih database";
 		}
 	}
 	
