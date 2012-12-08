@@ -9,27 +9,21 @@
 			$search=mysql_query($sql);
 			$role =mysql_fetch_array($search);
 		//	print_r($role);
-			if($role){
 			while($role){
 				if ($role['kd_role']==1){
-				return $this->koderole="admin";
-				$_SESSION['todo_login']=$username;
+					return $this->koderole="admin";
+					$_SESSION['users']=$username;
 				}
 				if ($role['kd_role']==2){
-				return $this->koderole="birojasa";
-				$_SESSION['todo_login']=$username;
+					return $this->koderole="birojasa";
+					$_SESSION['users']=$username;
 				}
 				if ($role['kd_role']==3){
-				return $this->koderole="majikan";
-				$_SESSION['todo_login']=$username;
+					return $this->koderole="majikan";
+					$_SESSION['users']=$username;
+				}
 			}
-				
-			}
-			}
-			else{
-				return $this->koderole="intruder";
-			}
-			}
+		}
 			
 		public function logout(){
 			session_destroy();
