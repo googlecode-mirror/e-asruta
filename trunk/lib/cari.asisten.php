@@ -1,4 +1,9 @@
 <?php
+/**
+ * @author Arif Setiyanto
+ * @copyright 2012
+ */
+ 
 class CariAsisten{
 	var $id_cari;
 	var $keterampilan;
