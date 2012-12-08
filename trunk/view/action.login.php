@@ -20,7 +20,7 @@ if (isset($_POST['submit'])){
 	if ($carirole=="majikan"){
 		header('location:../view/halaman_majikan.php');
 		exit();
-	//	print_r($_SESSION['kduser']);
+		print_r($_SESSION['kduser']);
 	} 
 	
 	else{

@@ -11,8 +11,9 @@
 			$role =mysql_fetch_array($search);
 		//	print_r($role);
 			while($role){
+				$kd_user=$role['kd_users'];
+				$_SESSION['kduser']=$kd_user;
 				$_SESSION['users']=$username;
-				$_SESSION['kduser']=$role['kd_users'];
 				$_SESSION['pass']=$password;
 				
 				if ($role['kd_role']==1){

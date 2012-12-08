@@ -49,7 +49,7 @@ class CariAsisten_Dao{
 	}
 	
 	//fungsi untuk menampilkan pencarian asisten rumah tangga berdasarkan id pencarian asisten rumah tangga
-	function cariPencarian($username){
+	function cariPencarian($id){
 	
 		$koneksi = new Koneksi();
 		$koneksi->pilihkonekdb();
@@ -60,7 +60,7 @@ class CariAsisten_Dao{
 		FROM
 		lowongan
 		WHERE
-		username = '".$username."'
+		id_cariasisten = '".$id."'
 		";
 		
 		$cari = false;
@@ -87,13 +87,13 @@ class CariAsisten_Dao{
 	}
 	
 	//fungsi untuk menampilkan semua pencarian asisten rumah tangga yang telah disubmit majikan
-	function tampilSemuaCari($id){
+	function tampilSemuaCari($kd_users){
 		$koneksi = new Koneksi();
 		$koneksi->pilihkonekdb();
 		
 		$sql = "
 		SELECT
-		id,
+		id_cariasisten,
 		keterampilan,
 		jam_kerja,
 		hari_kerja,
@@ -103,15 +103,15 @@ class CariAsisten_Dao{
 		FROM
 		lowongan
 		where
-		kd_users='".$id."'
+		kd_users='".$kd_users."'
 		";
 		
 		$list_cari = array();
-		$cari = new CariAsisten();
 		$res = mysql_query($sql);
 		if($res){
 			while($row = mysql_fetch_assoc($res)){
-				$cari->id=$row['id'];
+				$cari = new CariAsisten();
+				$cari->id=$row['id_cariasisten'];
 				$cari->keterampilan=$row['keterampilan'];
 				$cari->jam_kerja=$row['jam_kerja'];
 				$cari->hari_kerja=$row['hari_kerja'];
@@ -120,12 +120,10 @@ class CariAsisten_Dao{
 				$cari->gaji=$row['gaji'];				
 				
 				$list_cari[] = $cari;
-			
 			}
 		}
 		
 		$koneksi->tutupdb();
-		
 		return $list_cari;
 	
 	}
