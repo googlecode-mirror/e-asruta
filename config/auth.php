@@ -1,4 +1,5 @@
 <?php
+//session_start();
 	class Auth {
 		public function login ($username,$password){
 			$koneksi = new koneksi;
@@ -11,16 +12,20 @@
 		//	print_r($role);
 			while($role){
 				if ($role['kd_role']==1){
-					return $this->koderole="admin";
 					$_SESSION['users']=$username;
+					
+					return $this->koderole="admin";
+					
 				}
 				if ($role['kd_role']==2){
-					return $this->koderole="birojasa";
 					$_SESSION['users']=$username;
+					return $this->koderole="birojasa";
+					
 				}
 				if ($role['kd_role']==3){
-					return $this->koderole="majikan";
 					$_SESSION['users']=$username;
+					return $this->koderole="majikan";
+					
 				}
 			}
 		}
@@ -29,8 +34,8 @@
 			session_destroy();
 		}
 		
-		public function __construct(){
-			session_start();
-		}
+//		public function __construct(){
+//			session_start();
+//		}
 	}
 

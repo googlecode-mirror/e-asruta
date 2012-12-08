@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../config/waktu.php';
 ?>
 
@@ -18,7 +19,7 @@ LIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xh
 				<div class="smalltext" style="padding:13px;"><strong><?php echo $waktunya; ?></strong></div>
 			</div>
 			<div id="topbar">
-				<div align="right" style="padding:12px;" class="smallwhitetext"><a href="#">Home</a> | <a href="#">Sitemap</a> | <a href="#">Contact Us</a></div>
+				<div align="right" style="padding:12px;" class="smallwhitetext"> Selamat Datang <?php echo $_SESSION['users']; ?>, <a href="action.logout.php">Logout</a></div>
 			</div>
 		</div>
 		<div id="header" align="center">
