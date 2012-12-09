@@ -9,7 +9,7 @@ include_once '../config/waktu.php';
 <head>
 	<meta name="author" content="Wink Hosting (www.winkhosting.com)" />
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css" />
 	<title>Form Pencarian Asisten Rumah Tangga</title>
 </head>
 <body>

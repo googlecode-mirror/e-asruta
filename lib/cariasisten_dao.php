@@ -17,7 +17,8 @@ class CariAsisten_Dao{
 			INSERT 
 			INTO
 			lowongan
-			(
+			(	
+				kd_users,
 				keterampilan,
 				gaji,
 				hari_kerja,
@@ -28,6 +29,7 @@ class CariAsisten_Dao{
 			)
 			VALUES
 			(
+				'".$cariasisten->kd_users."',
 				'".$cariasisten->keterampilan."',
 				'".$cariasisten->gaji."',
 				'".$cariasisten->hari_kerja."',
@@ -77,7 +79,8 @@ class CariAsisten_Dao{
 			$cari->jam_kerja=$row['jam_kerja'];
 			$cari->hari_kerja=$row['hari_kerja'];
 			$cari->luas_rumah=$row['luas_rumah'];
-			$cari->anggota_kel=$row['anggota_kel'];		
+			$cari->anggota_kel=$row['anggota_kel'];	
+			$cari->lokasi=$row['lokasi'];
 		
 		}
 		
@@ -138,7 +141,7 @@ class CariAsisten_Dao{
 		FROM
 		lowongan
 		WHERE
-		id = '".$id."'
+		id_cariasisten = '".$id."'
 		";
 		
 		mysql_query($sql);
