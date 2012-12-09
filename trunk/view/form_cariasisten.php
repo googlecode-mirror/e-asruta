@@ -27,10 +27,14 @@ include '../config/waktu.php';
 						<td>Jumlah anggota keluarga</td><td><input name="anggota_kel" type="text" /></td> 
 					</tr>
 					<tr>
-						<td>Lokasi</td><td><input name="lokasi" type="text" /></td> 
+						<td>Lokasi</td>
+						<td>
+						<?php $list_daerah=array("Surabaya Barat","Surabaya Timur","Surabaya Pusat","Surabaya Selatan");?>
+						<select name="lokasi"> <?php for($i=0; $i<count($list_daerah); $i++){ ?> <option value="<?= $list_daerah[$i]?>"><?= $list_daerah[$i]?></option> <?php }?> </select>  
+						</td>
 					</tr>
 					<tr>
-						<td><input name="Submit" type="submit" value="Submit"/></td> 
+						<td></td><td><input name="Submit" type="submit" value="Simpan" class="btn btn-primary" align="right"/></td> 
 					</tr>
 				</table>
 			</form>

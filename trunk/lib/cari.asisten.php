@@ -5,6 +5,7 @@
  */
  
 class CariAsisten{
+	var $kd_users;
 	var $id_cari;
 	var $keterampilan;
 	var $gaji;

@@ -9,7 +9,7 @@ $data=$pencarian->tampilSemuaCari($_SESSION['kduser']);
 ?>
 		<div id="contenttext">
 			<div class="bodytext" style="padding:12px;" align="justify">
-				<table border="2" align="center">
+				<table border="2" align="left" class="table table-striped">
 					<tr>
 						<td>Keterampilan</td>
 						<td>Hari Kerja</td>
@@ -21,7 +21,8 @@ $data=$pencarian->tampilSemuaCari($_SESSION['kduser']);
 					</tr>
 	
 				<?php
-					foreach ($data as $cari){
+					if($data!=NULL){
+						foreach ($data as $cari){
 				?>
 				   <tr>	<td><?php echo $cari->keterampilan; ?></td>
 						<td><?php echo $cari->hari_kerja;?></td>
@@ -29,9 +30,13 @@ $data=$pencarian->tampilSemuaCari($_SESSION['kduser']);
 						<td><?php echo $cari->luas_rumah; ?></td>
 						<td><?php echo $cari->anggota_kel; ?></td>
 						<td><?php echo $cari->gaji; ?></td>
+						<td><?php echo '<a href="ubah_asisten.php?id='.$cari->id.'" class="icon-pencil"></a>' ; ?> | <?php echo '<a href="tanya_hapus.php?id='.$cari->id.'" class="icon-trash"></a>';?></td>
 						</tr>
-				<?php } ?>
+						
+				<?php 	}
+					} ?>
 				</table>
+				<td><?php echo '<a href="form_cariasisten.php?id='.$cari->id.'" class="btn btn-primary">Rekam Baru</a>' ; ?></td>
 			</div>
 		</div>
 <?php include 'footer.php'; ?>
