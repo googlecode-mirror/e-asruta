@@ -8,7 +8,7 @@ LIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xh
 <head>
 	<meta name="author" content="Wink Hosting (www.winkhosting.com)" />
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<link rel="stylesheet" href="view/bootstrap/css/bootstrap.css" type="text/css" />
 	<title>e_Asruta</title>
 </head>
 <body>
