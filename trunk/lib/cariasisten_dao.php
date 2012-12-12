@@ -19,7 +19,6 @@ class CariAsisten_Dao{
 			`lowongan`
 			(
 			`PEMBUAT_LAMAR`, 
-			`KD_ASISTEN`, 
 			`KD_JENISLO`, 
 			`KD_KEAHLIAN`, 
 			`GAJI`, 
@@ -31,14 +30,13 @@ class CariAsisten_Dao{
 			VALUES
 			(
 				'".$cariasisten->pembuat_lamar."',
-				'".$cariasisten->kd_asisten."',
 				'".$cariasisten->kd_jenislo."',
 				'".$cariasisten->kd_keahlian."',
 				'".$cariasisten->gaji."',
 				'".$cariasisten->lokasi."',
-				'".$cariasisten->hari_kerja."',
+				'".$cariasisten->jam_kerja."',
 				'".$cariasisten->menginap."',
-				'".$cariasisten->jam_kerja."'
+				'".$cariasisten->hari_kerja."'
 			)
 		" ;
 		$berhasil=mysql_query($sql);
