@@ -7,36 +7,38 @@
 class CariAsisten_Dao{
 	
 	//fungsi untuk menambahkan pencarian asisten rumah tangga
-	function tambahPencarian(CariAsisten $cariasisten){
+	function tambahPencarian(Lowongan $cariasisten){
 	
 		$koneksi = new Koneksi();
 		
 		$koneksi->pilihkonekdb();
 		
 		$sql = "
-			INSERT 
+			INSERT
 			INTO
-			lowongan
-			(	
-				kd_users,
-				keterampilan,
-				gaji,
-				hari_kerja,
-				jam_kerja,
-				luas_rumah,
-				anggota_kel,
-				lokasi
+			`lowongan`
+			(
+			`PEMBUAT_LAMAR`, 
+			`KD_ASISTEN`, 
+			`KD_JENISLO`, 
+			`KD_KEAHLIAN`, 
+			`GAJI`, 
+			`LOKASI`, 
+			`JAM_KERJA`, 
+			`MENGINAP`, 
+			`HARI_KERJA`
 			)
 			VALUES
 			(
-				'".$cariasisten->kd_users."',
-				'".$cariasisten->keterampilan."',
+				'".$cariasisten->pembuat_lamar."',
+				'".$cariasisten->kd_asisten."',
+				'".$cariasisten->kd_jenislo."',
+				'".$cariasisten->kd_keahlian."',
 				'".$cariasisten->gaji."',
+				'".$cariasisten->lokasi."',
 				'".$cariasisten->hari_kerja."',
-				'".$cariasisten->jam_kerja."',
-				'".$cariasisten->luas_rumah."',
-				'".$cariasisten->anggota_kel."',
-				'".$cariasisten->lokasi."'
+				'".$cariasisten->menginap."',
+				'".$cariasisten->jam_kerja."'
 			)
 		" ;
 		$berhasil=mysql_query($sql);
@@ -44,12 +46,11 @@ class CariAsisten_Dao{
 			echo "gagal";
 		}
 		
-		$cariasisten->id_cariasisten = mysql_insert_id();
+		$cariasisten->kd_lowongan = mysql_insert_id();
 		
 		$koneksi->tutupdb();
 	
 	}
-	
 	//fungsi untuk menampilkan pencarian asisten rumah tangga berdasarkan id pencarian asisten rumah tangga
 	function cariPencarian($id){
 	
@@ -95,18 +96,18 @@ class CariAsisten_Dao{
 		$koneksi->pilihkonekdb();
 		
 		$sql = "
-		SELECT
-		id_cariasisten,
-		keterampilan,
-		jam_kerja,
-		hari_kerja,
-		luas_rumah,
-		anggota_kel,
-		gaji
-		FROM
-		lowongan
-		where
-		kd_users='".$kd_users."'
+		SELECT 
+		`KD_LOWONGAN`, 
+		`PEMBUAT_LAMAR`, 
+		`KD_ASISTEN`, 
+		`KD_JENISLO`, 
+		`KD_KEAHLIAN`, 
+		`GAJI`, 
+		`LOKASI`, 
+		`JAM_KERJA`, 
+		`MENGINAP`, 
+		`HARI_KERJA` 
+		FROM `lowongan` WHERE PEMBUAT_LAMAR='".$kd_users."'
 		";
 		
 		$list_cari = array();
@@ -114,13 +115,16 @@ class CariAsisten_Dao{
 		if($res){
 			while($row = mysql_fetch_assoc($res)){
 				$cari = new CariAsisten();
-				$cari->id=$row['id_cariasisten'];
-				$cari->keterampilan=$row['keterampilan'];
-				$cari->jam_kerja=$row['jam_kerja'];
-				$cari->hari_kerja=$row['hari_kerja'];
-				$cari->luas_rumah=$row['luas_rumah'];
-				$cari->anggota_kel=$row['anggota_kel'];	
-				$cari->gaji=$row['gaji'];				
+				$cari->kd_lowongan=$row['KD_LOWONGAN'];
+				$cari->pembuat_lamar=$row['PEMBUAT_LAMAR'];
+				$cari->kd_asisten=$row['KD_ASISTEN'];
+				$cari->kd_jenislo=$row['KD_JENISLO'];
+				$cari->kd_keahlian=$row['KD_KEAHLIAN'];
+				$cari->gaji=$row['GAJI'];
+				$cari->lokasi=$row['LOKASI'];
+				$cari->jam_kerja=$row['JAM_KERJA'];
+				$cari->menginap=$row['MENGINAP'];
+				$cari->hari_kerja=$row['HARI_KERJA'];		
 				
 				$list_cari[] = $cari;
 			}
