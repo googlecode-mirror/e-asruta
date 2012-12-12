@@ -1,3 +1,7 @@
+/**
+ * @author rizky
+ * @copyright 2012
+ */
 <form action="submit.php" method="post">
 <table border="0">
 <tbody>
