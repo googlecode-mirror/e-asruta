@@ -60,13 +60,30 @@ class pekerjaan{
     }
     
     //**UC-12
-    public function melamar($id_cariasisten, $id_asisten){
-        $this->id_cariasisten->$id_cariasisten;
-        $this->id_asisten->id_asisten;
-        $this->lamar->$lamar;
-        $this->id_majikan->id_majikan;
+    public function melamar($kd_lowongan, $kd_member, $kd_asisten, $kd_status){
+        $this->kd_lowongan->$kd_lowongan;
+        $this->kd_member->$kd_member;
+        $this->kd_asisten->$kd_asisten;
+        $this->kd_status->$kd_status;
         
-        $sql = "update lowongan set id_asisten = '".$this->id_asisten."' where id_kerja = '".$this->id_cariasisten."'";
+        $sql = "
+			INSERT 
+			INTO
+			detail_lowongan
+			(	
+				kd_lowongan,
+				kd_member,
+				kd_asisten,
+				kd_status
+			)
+			VALUES
+			(
+				'".$kd_lowongan."',
+				'".$kd_member."',
+				'".$kd_asisten."',
+				'".$kd_status."'
+			)
+		" ;
         
         $hasil=mysql_query($sql) or (mysql_error());
     }
