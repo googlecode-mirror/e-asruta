@@ -9,10 +9,11 @@ include '../config/waktu.php';
 				<form method="post" action="action.cariasisten.php">
 				<table>
 					<tr>
-						<td>Keterampilan</td><td><input name="kd_keahlian" type="text" /></td> 
+						<td width="121">Keterampilan</td>
+						<td width="293"><input name="kd_keahlian" type="text" /></td> 
 					</tr>
 					<tr>
-						<td>Gaji yang diinginkan</td><td><input name="gaji" type="text" /></td> 
+						<td>Gaji yang diinginkan</td><td><input name="gaji" type="text" value="" /></td> 
 					</tr>
 					<tr>
 						<td>Lokasi</td><td><input name="lokasi" type="text" /></td> 
@@ -24,14 +25,16 @@ include '../config/waktu.php';
 					<tr>
 						<td>Menginap tidak?</td>
 						<td>
-							<select name="lokasi"><option value="Ya">Ya</option> <option value="Tidak">Tidak</option></select>  
-						</td>
+							<select name="lokasi"><option value="Ya">Ya</option> <option value="Tidak">Tidak</option></select>						</td>
 					</tr>
 					<tr>
 						<td>Jam Kerja</td><td><input name="jam_kerja" type="text" /></td> 
 					</tr>
 					<tr>
-						<td></td><td><input name="Submit" type="submit" value="Simpan" class="btn btn-primary" align="right"/></td> 
+						<td></td>
+						<td><div align="right">
+						  <input name="Submit" type="submit" value="Simpan" class="btn btn-primary" align="right"/>
+					    </div></td>
 					</tr>
 				</table>
 			</form>
