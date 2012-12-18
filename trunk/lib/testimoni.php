@@ -5,7 +5,7 @@
  */
  
 class Testimoni{
-	var $id_testimoni;
-	var $kd_users;
-	var $isi_testimoni;
+	var $kd_testi;
+	var $kd_member;
+	var $isi_testi;
 }

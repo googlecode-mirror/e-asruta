@@ -18,14 +18,14 @@ class CariAsisten_Dao{
 			INTO
 			`lowongan`
 			(
-			`PEMBUAT_LAMAR`, 
-			`KD_JENISLO`, 
-			`KD_KEAHLIAN`, 
-			`GAJI`, 
-			`LOKASI`, 
-			`JAM_KERJA`, 
-			`MENGINAP`, 
-			`HARI_KERJA`
+			`pembuat_lamar`, 
+			`kd_jenislo`, 
+			`kd_keahlian`, 
+			`gaji`, 
+			`lokasi`, 
+			`jam_kerja`, 
+			`menginap`, 
+			`hari_kerja`
 			)
 			VALUES
 			(
@@ -61,7 +61,7 @@ class CariAsisten_Dao{
 		FROM
 		lowongan
 		WHERE
-		id_cariasisten = '".$id."'
+		pembuat_lamar = '".$id."'
 		";
 		
 		$cari = false;
@@ -73,13 +73,12 @@ class CariAsisten_Dao{
 			$row = mysql_fetch_assoc($res);
 		
 			$cari = new CariAsisten();
-			$cari->keterampilan=$row['keterampilan'];
+			$cari->kd_keahlian=$row['kd_keahlian'];
 			$cari->gaji=$row['gaji'];
-			$cari->jam_kerja=$row['jam_kerja'];
-			$cari->hari_kerja=$row['hari_kerja'];
-			$cari->luas_rumah=$row['luas_rumah'];
-			$cari->anggota_kel=$row['anggota_kel'];	
 			$cari->lokasi=$row['lokasi'];
+			$cari->jam_kerja=$row['jam_kerja'];
+			$cari->menginap=$row['menginap'];
+			$cari->hari_kerja=$row['hari_kerja'];	
 		
 		}
 		
@@ -95,17 +94,17 @@ class CariAsisten_Dao{
 		
 		$sql = "
 		SELECT 
-		`KD_LOWONGAN`, 
-		`PEMBUAT_LAMAR`, 
-		`KD_ASISTEN`, 
-		`KD_JENISLO`, 
-		`KD_KEAHLIAN`, 
-		`GAJI`, 
-		`LOKASI`, 
-		`JAM_KERJA`, 
-		`MENGINAP`, 
-		`HARI_KERJA` 
-		FROM `lowongan` WHERE PEMBUAT_LAMAR='".$kd_users."'
+		`kd_lowongan`, 
+		`pembuat_lamar`, 
+		`kd_asisten`, 
+		`kd_jenislo`, 
+		`kd_keahlian`, 
+		`gaji`, 
+		`lokasi`, 
+		`jam_kerja`, 
+		`menginap`, 
+		`hari_kerja` 
+		FROM `lowongan` WHERE pembuat_lamar='".$kd_users."'
 		";
 		
 		$list_cari = array();
@@ -113,16 +112,16 @@ class CariAsisten_Dao{
 		if($res){
 			while($row = mysql_fetch_assoc($res)){
 				$cari = new CariAsisten();
-				$cari->kd_lowongan=$row['KD_LOWONGAN'];
-				$cari->pembuat_lamar=$row['PEMBUAT_LAMAR'];
-				$cari->kd_asisten=$row['KD_ASISTEN'];
-				$cari->kd_jenislo=$row['KD_JENISLO'];
-				$cari->kd_keahlian=$row['KD_KEAHLIAN'];
-				$cari->gaji=$row['GAJI'];
-				$cari->lokasi=$row['LOKASI'];
-				$cari->jam_kerja=$row['JAM_KERJA'];
-				$cari->menginap=$row['MENGINAP'];
-				$cari->hari_kerja=$row['HARI_KERJA'];		
+				$cari->kd_lowongan=$row['kd_lowongan'];
+				$cari->pembuat_lamar=$row['pembuat_lamar'];
+				$cari->kd_asisten=$row['kd_asisten'];
+				$cari->kd_jenislo=$row['kd_jenislo'];
+				$cari->kd_keahlian=$row['kd_keahlian'];
+				$cari->gaji=$row['gaji'];
+				$cari->lokasi=$row['lokasi'];
+				$cari->jam_kerja=$row['jam_kerja'];
+				$cari->menginap=$row['menginap'];
+				$cari->hari_kerja=$row['hari_kerja'];		
 				
 				$list_cari[] = $cari;
 			}
@@ -143,7 +142,7 @@ class CariAsisten_Dao{
 		FROM
 		lowongan
 		WHERE
-		id_cariasisten = '".$id."'
+		kd_lowongan = '".$id."'
 		";
 		
 		mysql_query($sql);
