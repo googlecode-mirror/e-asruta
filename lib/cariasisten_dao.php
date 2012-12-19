@@ -56,12 +56,21 @@ class CariAsisten_Dao{
 		$koneksi->pilihkonekdb();
 		
 		$sql = "
-		SELECT
-		*
+		SELECT 
+		b.jns_keahlian,
+		a.gaji,
+		a.lokasi,
+		a.jam_kerja,
+		a.menginap,
+		a.hari_kerja
 		FROM
-		lowongan
+		lowongan as a
+		JOIN
+		keahlian as b
 		WHERE
-		pembuat_lamar = '".$id."'
+		a.pembuat_lamar = '".$id."'
+		AND
+		a.kd_keahlian=b.kd_keahlian
 		";
 		
 		$cari = false;
@@ -73,7 +82,7 @@ class CariAsisten_Dao{
 			$row = mysql_fetch_assoc($res);
 		
 			$cari = new CariAsisten();
-			$cari->kd_keahlian=$row['kd_keahlian'];
+			$cari->kd_keahlian=$row['jns_keahlian'];
 			$cari->gaji=$row['gaji'];
 			$cari->lokasi=$row['lokasi'];
 			$cari->jam_kerja=$row['jam_kerja'];
@@ -94,17 +103,23 @@ class CariAsisten_Dao{
 		
 		$sql = "
 		SELECT 
-		`kd_lowongan`, 
-		`pembuat_lamar`, 
-		`kd_asisten`, 
-		`kd_jenislo`, 
-		`kd_keahlian`, 
-		`gaji`, 
-		`lokasi`, 
-		`jam_kerja`, 
-		`menginap`, 
-		`hari_kerja` 
-		FROM `lowongan` WHERE pembuat_lamar='".$kd_users."'
+		a.kd_lowongan, 
+		a.pembuat_lamar, 
+		a.kd_asisten, 
+		a.kd_jenislo, 
+		b.jns_keahlian, 
+		a.gaji, 
+		a.lokasi, 
+		a.jam_kerja, 
+		a.menginap, 
+		a.hari_kerja 
+		FROM 
+		lowongan as a
+		JOIN
+		keahlian as b
+		WHERE pembuat_lamar='".$kd_users."'
+		AND
+		a.kd_keahlian=b.kd_keahlian
 		";
 		
 		$list_cari = array();
@@ -116,7 +131,7 @@ class CariAsisten_Dao{
 				$cari->pembuat_lamar=$row['pembuat_lamar'];
 				$cari->kd_asisten=$row['kd_asisten'];
 				$cari->kd_jenislo=$row['kd_jenislo'];
-				$cari->kd_keahlian=$row['kd_keahlian'];
+				$cari->kd_keahlian=$row['jns_keahlian'];
 				$cari->gaji=$row['gaji'];
 				$cari->lokasi=$row['lokasi'];
 				$cari->jam_kerja=$row['jam_kerja'];
@@ -149,5 +164,29 @@ class CariAsisten_Dao{
 		
 		$koneksi->tutupdb();
 	
+	}
+	function cari_keahlian(){
+		$koneksi = new Koneksi();
+		$koneksi->pilihkonekdb();
+		
+		$sql = "
+		SELECT 
+		*
+		FROM
+		keahlian
+		";
+		
+		$daftar_keahlian = array();
+		$res = mysql_query($sql);
+		if($res){
+			while($row = mysql_fetch_assoc($res)){
+				$cari = new CariAsisten();
+				$cari->kd_keahlian=$row['kd_keahlian'];
+				$cari->jns_keahlian=$row['jns_keahlian'];
+				$daftar_keahlian[] = $cari;
+			}
+		}
+		$koneksi->tutupdb();
+		return $daftar_keahlian;
 	}
 }

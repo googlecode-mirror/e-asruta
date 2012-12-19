@@ -32,7 +32,7 @@
 		if(!$berhasil){
 		//	echo "gagal";
 		}
-		$testi->id_testi= mysql_insert_id();
+		$testi->kd_testi= mysql_insert_id();
 		
 		$koneksi->tutupdb();
 	}
@@ -42,6 +42,7 @@
 		$koneksi = new Koneksi();
 		
 		$koneksi->pilihkonekdb();
+		$daftar_testi = array();
 		
 		$sql="
 		select * 
@@ -56,14 +57,15 @@
 			$hasil = mysql_fetch_assoc($testi);
 		
 			$testimoni = new Testimoni();
-			$testimoni->kd_testi=$row['kd_testi'];
-			$testimoni->kd_member=$row['kd_member'];
-			$testimoni->isi_testi=$row['isi_testi'];		
+			$testimoni->kd_testi=$hasil['kd_testi'];
+			$testimoni->kd_member=$hasil['kd_member'];
+			$testimoni->isi_testi=$hasil['isi_testi'];	
+			$daftar_testi[]=$testimoni;			
 		}
 		
 		$koneksi->tutupdb();
 		
-		return $testimoni;
+		return $daftar_testi;
 	}
 
  }

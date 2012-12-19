@@ -2,6 +2,10 @@
 include_once 'header.php';
 include_once 'sidebar.php';
 include '../config/waktu.php';
+include '../lib/cariasisten_dao.php';
+include '../lib/cari.asisten.php';
+$cari=new CariAsisten_Dao();
+$data=$cari->cari_keahlian();
 ?>
 
 		<div id="contenttext">
@@ -9,8 +13,17 @@ include '../config/waktu.php';
 				<form method="post" action="action.cariasisten.php">
 				<table>
 					<tr>
-						<td width="121">Keterampilan</td>
-						<td width="293"><input name="kd_keahlian" type="text" /></td> 
+						<td>Keterampilan</td>
+						<td>
+							<select name="keterampilan">
+								<?php
+								if($data!=NULL){
+								foreach ($data as $cari){?>	
+							<option value="<?php echo $cari->kd_keahlian;?>"><?php echo $cari->jns_keahlian; ?></option>
+							<?php } 
+							}?>
+							</select> 
+						</td>
 					</tr>
 					<tr>
 						<td>Gaji yang diinginkan</td><td><input name="gaji" type="text" value="" /></td> 
@@ -25,7 +38,7 @@ include '../config/waktu.php';
 					<tr>
 						<td>Menginap tidak?</td>
 						<td>
-							<select name="lokasi"><option value="Ya">Ya</option> <option value="Tidak">Tidak</option></select>						</td>
+							<select name="lokasi"><option value="Ya">Ya</option> <option value="Tidak">Tidak</option></select></td>
 					</tr>
 					<tr>
 						<td>Jam Kerja</td><td><input name="jam_kerja" type="text" /></td> 
@@ -39,6 +52,5 @@ include '../config/waktu.php';
 				</table>
 			</form>
 			</div>
-		</div>
-			
+		</div>	
 <?php include 'footer.php'; ?>
