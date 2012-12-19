@@ -15,5 +15,6 @@ class Lowongan{
 	var $gaji;
 	var $lokasi;
 	var $menginap;
+	var $jns_keahlian;
 	
 }

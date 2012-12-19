@@ -7,5 +7,6 @@
 class Testimoni{
 	var $kd_testi;
 	var $kd_member;
+	var $lokasi;
 	var $isi_testi;
 }
