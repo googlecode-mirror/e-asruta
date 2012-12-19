@@ -89,8 +89,14 @@ class pekerjaan{
     }
     
     //hapus lamaran
-    public function hps_lamar($id_kerja){
-        $sql = "delete from lowongan where id_kerja=$id_kerja";
+    public function hps_lamar($kd_member, $kd_asisten){
+        $sql = 
+        "delete 
+        from detail_lowongan
+        where
+        kd_member = $kd_member
+        and
+        kd_asisten = $kd_asisten";
         
         $hasil=mysql_query($sql) or (mysql_error());
     }
