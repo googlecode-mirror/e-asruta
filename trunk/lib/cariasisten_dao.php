@@ -180,7 +180,7 @@ class CariAsisten_Dao{
 		$res = mysql_query($sql);
 		if($res){
 			while($row = mysql_fetch_assoc($res)){
-				$cari = new CariAsisten();
+				$cari = new Lowongan();
 				$cari->kd_keahlian=$row['kd_keahlian'];
 				$cari->jns_keahlian=$row['jns_keahlian'];
 				$daftar_keahlian[] = $cari;
