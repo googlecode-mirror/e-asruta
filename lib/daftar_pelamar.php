@@ -60,7 +60,7 @@ class pekerjaan{
     }
     
     //**UC-12
-    public function melamar($kd_lowongan, $kd_member, $kd_asisten, $kd_status){
+    public function createAst($kd_lowongan, $kd_member, $kd_asisten, $kd_status){
         $this->kd_lowongan->$kd_lowongan;
         $this->kd_member->$kd_member;
         $this->kd_asisten->$kd_asisten;
