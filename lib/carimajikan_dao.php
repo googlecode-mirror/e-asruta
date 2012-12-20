@@ -91,11 +91,55 @@
             a.kd_jenislo = b.kd_jenislo
             AND
             a.kd_keahlian = c.kd_keahlian
-            and
-            a.kd_jenislo like 
+            and 
+            a.kd_jenislo like ";
         }
         
-        
+        public function cari_lamar($kd_member){
+            $koneksi = new Koneksi();
+    		$koneksi->pilihkonekdb();
+    		
+    		$sql = "
+    		SELECT 
+            a.nm_asisten,
+            b.nm_member,
+            c.jenis_lowongan
+            
+            from
+            asisten a
+            join
+            members b,
+            join
+            lowongan c,
+            join
+            detail_lowongan d
+            
+            where
+            a.kd_asisten = d.kd_asisten
+            and
+            b.kd_member = a.kd_member";
+            
+			
+			$cari = false;
+    		
+    		$res = mysql_query($sql);
+    		
+    		if($res){
+    		
+    			$row = mysql_fetch_assoc($res);
+    		
+    			$cari = new CariMajikan();
+    			$cari->nm_asisten=$row['nm_asisten'];
+    			$cari->nm_member=$row['nm_member'];
+    			$cari->majikan=$row['majikan'];
+    			$cari->jenis_lowongan=$row['jenis_lowongan'];		
+    		
+    		}
+    		
+    		$koneksi->tutupdb();
+    		
+    		return $cari;
+        }
 	
     }
 
