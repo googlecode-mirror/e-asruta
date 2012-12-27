@@ -6,7 +6,7 @@ session_start();
  */
  
 require_once '../config/koneksi.php';
-require_once '../lib/birojasaan.php';
+require_once '../lib/birojasa.php';
 require_once '../lib/birojasa_dao.php';
 
 $members = "select kd_member from members where kd_user = $_SESSION['kduser']";
