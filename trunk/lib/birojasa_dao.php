@@ -73,7 +73,7 @@
     
         function edit_asisten(birojasa $birojasa){
             $koneksi = new Koneksi();
-            $$koneksi->pilihkonekdb();
+            $koneksi->pilihkonekdb();
             
             $sql = "
             Update
@@ -87,7 +87,39 @@
             kota_asisten = '".$birojasa->kota_asisten."',
             no_idasisten = '".$birojasa->no_idasisten."',
             copy_asisten = '".$birojasa->copy_asisten."'";
+			
+			mysql_query($sql);
+		
+			$koneksi->tutupdb();
         }
+		
+		function daftar_asisten(birojasa $kd_member){
+			$koneksi = new Koneksi();
+			
+			$koneksi->pilihkonekdb();
+            
+            $sql = "
+			Select
+			nm_asisten,
+			hapeasisten,
+			alamat_asisten,
+			tgl_lahirasisten,
+			tmpt_lahirasisten,
+			kota_asisten,
+			no_idasisten
+			
+			From
+			
+			asisten
+			where
+			kd_member = 
+			(select kd_members from members 
+			where kd_user = $_SESSION['kduser']";
+			
+			mysql_query($sql);
+		
+			$koneksi->tutupdb();
+	}
 
 
 ?>
