@@ -78,7 +78,6 @@
             $sql = "
             Update
             asisten set
-            kd_member = '".$birojasa->kd_member."',
             nm_asisten = '".$birojasa->nm_asisten."',
             hapeasisten = '".$birojasa->hapeasisten."',
             alamat_asisten = '".$birojasa->alamat_asisten."',
@@ -86,7 +85,8 @@
             tmpt_lahirasisten = '".$birojasa->tmpt_lahirasisten."',
             kota_asisten = '".$birojasa->kota_asisten."',
             no_idasisten = '".$birojasa->no_idasisten."',
-            copy_asisten = '".$birojasa->copy_asisten."'";
+            copy_asisten = '".$birojasa->copy_asisten."'
+			where kd_asisten = ".$birojasa->kd_asisten."'";
 			
 			mysql_query($sql);
 		
