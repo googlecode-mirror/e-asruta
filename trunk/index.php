@@ -2,8 +2,7 @@
 include 'config/waktu.php';
 ?>
 
-<!DOCTYPE html PUB
-LIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="author" content="Wink Hosting (www.winkhosting.com)" />
@@ -32,22 +31,32 @@ LIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xh
 		<div id="content" align="left">
 			<div id="menu" align="right">
 			</div>
-		<div id="contenttext">
-			<div class="bodytext" style="padding:12px;" align="justify">
+		<div id="contenttext2">
+		  <div class="bodytext" style="padding:12px;" align="justify">
 				<form method="post" action="view/action.login.php">
 				<table>
 					<tr>
-						<td>Username</td><td><input name="username" type="text" /></td> 
+						<td width="49">Username</td>
+						<td width="213"><input name="username" type="text" /></td> 
 					</tr>
 					<tr>
-						<td>Password</td><td><input name="password" type="password" /></td> 
-					</tr>
+						<td>Password</td>
+						<td>
+						  
+						  <div align="left">
+						    <input name="password" type="password" />
+					      </div></td></tr>
 					<tr>
-						<td></td><td><input name="submit" type="submit" value="Login"/></td> 
+						<td></td>
+						<td><div align="right"><span class="bodytext" style="padding:12px;">
+						  <input name="submit" type="submit" value="Login"/>
+					    </span></div></td>
 					</tr>
 				</table>
-			</form>
+				</form>
 			</div>	
+			</div>
+		</div>
 		</div>
 </body>
 </html>
