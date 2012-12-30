@@ -1,0 +1,30 @@
+<!--/**
+ * @author rizky
+ * @copyright 2012
+ */-->
+<form action="submit_admin.php" method="post">
+<table border="0">
+<tbody>
+<tr>
+<td>Masukkan Username</td>
+<td>
+<input name="username" type="text" /></td>
+</tr>
+<tr>
+<tr>
+<td>Masukkan Password</td>
+<td>
+<input name="password" type="password" /></td>
+</tr>
+<tr>
+<td>Ulangi Password</td>
+<td>
+<input name="pass2" type="password" /></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<input name="Submit" type="submit" value="Submit" /></td>
+</tr>
+</tbody></table>
+</form>
