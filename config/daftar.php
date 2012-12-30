@@ -1,7 +1,7 @@
-/**
+<!--/**
  * @author rizky
  * @copyright 2012
- */
+ */-->
 <form action="submit.php" method="post">
 <table border="0">
 <tbody>
@@ -11,14 +11,10 @@
 <input name="username" type="text" /></td>
 </tr>
 <tr>
-<td>Masukkan E-mail</td>
-<td>
-<input style="background-color: #ffffa0;" name="email" type="text" /></td>
-</tr>
 <tr>
 <td>Masukkan Password</td>
 <td>
-<input name="pass1" type="password" /></td>
+<input name="password" type="password" /></td>
 </tr>
 <tr>
 <td>Ulangi Password</td>
