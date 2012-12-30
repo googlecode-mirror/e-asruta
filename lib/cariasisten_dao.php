@@ -97,7 +97,7 @@ class CariAsisten_Dao{
 	}
 	
 	//fungsi untuk menampilkan semua pencarian asisten rumah tangga yang telah disubmit majikan
-	function tampilSemuaCari($kd_users){
+	function tampilSemuaCari($kd_users,$halaman,$limit){
 		$koneksi = new Koneksi();
 		$koneksi->pilihkonekdb();
 		
@@ -120,6 +120,7 @@ class CariAsisten_Dao{
 		WHERE pembuat_lamar='".$kd_users."'
 		AND
 		a.kd_keahlian=b.kd_keahlian
+		LIMIT $halaman,$limit
 		";
 		
 		$list_cari = array();
@@ -188,5 +189,21 @@ class CariAsisten_Dao{
 		}
 		$koneksi->tutupdb();
 		return $daftar_keahlian;
+	}
+	
+	function hitungHalaman() {
+		$koneksi = new Koneksi();
+		$koneksi->pilihkonekdb();
+		$sql="
+			SELECT 
+			count(*) as total 
+			FROM 
+			lowongan 
+			WHERE pembuat_lamar='".$_SESSION['kduser']."'
+		";
+		
+		$itung = mysql_query($sql);
+		$jumlah = mysql_fetch_array($itung);
+		return $jumlah['total'];
 	}
 }
