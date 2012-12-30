@@ -1,14 +1,25 @@
+<!--/**
+ * @author rizky
+ * @copyright 2012
+ */-->
+<head>
+<meta http-equiv="refresh" content="5; URL=http://localhost/asru/">
+</head>
+
 <?php
 $username  = $_POST['username'];
-$password1 = $_POST['pass1'];
+$password1 = $_POST['password'];
 $password2 = $_POST['pass2'];
-$email = $_POST['email'];
+
+
 
 // cek kesamaan password
-if ($password1 == $password2)
+
+
+elseif ($password1 == $password2)
 {
-	mysql_connect("namahost", "dbuser", "dbpass");
-	mysql_select_db("dbname");
+	mysql_connect("localhost", "root", "");
+	mysql_select_db("e_asruta");
 
 	// perlu dibuat sebarang pengacak
 	$pengacak  = "NDJS3289JSKS190JISJI";
@@ -17,11 +28,12 @@ if ($password1 == $password2)
 	$password1 = md5($pengacak . md5($password1) . $pengacak);
 
 	// menyimpan username dan password terenkripsi ke database
-	$query = "INSERT INTO user VALUES('$username', '$password1', '$email')";
+	$query = "INSERT INTO users VALUES(' ','$username', '$password1', '2')";
 	$hasil = mysql_query($query);
 
 	// menampilkan status pendaftaran
-	if ($hasil) echo "User sudah berhasil terdaftar";
+	if ($hasil) echo "User sudah berhasil terdaftar"
+	;
 	else echo "Username sudah ada yang memiliki";
 
 }
