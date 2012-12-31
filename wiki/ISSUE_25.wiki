@@ -1,0 +1,11 @@
+Nama Issue :  Issue 25: 	Lihat Testimoni
+
+Penanggung Jawab : Arif Setiyanto
+
+Mulai dikerjakan - Selesai -
+
+Robustness diagram :
+
+Sequence diagram :
+
+Tampilan :
