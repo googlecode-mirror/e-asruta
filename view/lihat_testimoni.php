@@ -20,13 +20,13 @@ $data=$testi->lihatTesti();
 						foreach ($data as $testimoni){
 				?>				
 				   <tr>	<td><?php echo $testimoni->kd_member; ?></td>
-						<td><?php echo $testimoni->isi_testi;?></td>
+						<td><?php echo $testimoni->isi_testi; ?></td>
 						</tr>
 						
 				<?php 	}
 					} ?>
 				</table>
-				<td><?php echo '<a href="rekam_testimoni.php?id='.$testimoni->kd_testi.'" class="btn btn-primary">Isi Testimoni</a>' ; ?></td>
+					<td><?php echo '<a href="rekam_testimoni.php?id='.$testimoni->kd_testi.'" class="btn btn-primary">Isi Testimoni</a>' ; ?></td>
 			</div>
 		</div>
 <?php include 'footer.php'; ?>

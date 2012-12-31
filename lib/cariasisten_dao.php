@@ -120,6 +120,7 @@ class CariAsisten_Dao{
 		WHERE pembuat_lamar='".$kd_users."'
 		AND
 		a.kd_keahlian=b.kd_keahlian
+		ORDER BY kd_lowongan DESC
 		LIMIT $halaman,$limit
 		";
 		

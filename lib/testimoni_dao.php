@@ -6,33 +6,31 @@
  
  class Testimoni_Dao{
  
-	function isiTestimoni(Testimoni $testi){
+	function isiTestimoni(Testimoni $testimoni){
 		
 		$koneksi = new Koneksi();
 		
 		$koneksi->pilihkonekdb();
 		
 		$sql="
-		insert
-		into
-		testimoni
-		(
-			kd_member,
-			isi_testi;
-		)
-		values
-		(
-			'".$testi->kdmember."',
-			'".$testi->isi_testi."'
-			
-		)
-		";
+			INSERT
+			INTO 
+			`e_asruta`.`testimoni` 
+			(
+				`kd_member` ,
+				`isi_testi`
+			)
+			VALUES 
+			(
+				'".$testimoni->kd_member."',
+				'".$testimoni->isi_testi."'
+			)";
 		
 		$berhasil=mysql_query($sql);
 		if(!$berhasil){
 		//	echo "gagal";
 		}
-		$testi->kd_testi= mysql_insert_id();
+		$testimoni->kd_testi= mysql_insert_id();
 		
 		$koneksi->tutupdb();
 	}
@@ -42,30 +40,37 @@
 		$koneksi = new Koneksi();
 		
 		$koneksi->pilihkonekdb();
-		$daftar_testi = array();
+		$daftar_testimoni = array();
 		
 		$sql="
-		select * 
+		select 
+			a.kd_testi,
+			a.isi_testi,
+			b.nm_member
+			
 		from
-		testimoni
+		members as b
+		JOIN 
+		testimoni as a
+		WHERE
+		a.kd_member=b.kd_member
 		";
 		
 		$testi = mysql_query($sql);
 		
 		if($testi){
-		
-			$hasil = mysql_fetch_assoc($testi);
-		
-			$testimoni = new Testimoni();
-			$testimoni->kd_testi=$hasil['kd_testi'];
-			$testimoni->kd_member=$hasil['kd_member'];
-			$testimoni->isi_testi=$hasil['isi_testi'];	
-			$daftar_testi[]=$testimoni;			
+			while($hasil=mysql_fetch_assoc($testi)){
+				$testimoni = new Testimoni();
+				$testimoni->kd_testi=$hasil['kd_testi'];
+				$testimoni->kd_member=$hasil['nm_member'];
+				$testimoni->isi_testi=$hasil['isi_testi'];	
+				$daftar_testimoni[]=$testimoni;	
+			}
 		}
 		
 		$koneksi->tutupdb();
 		
-		return $daftar_testi;
+		return $daftar_testimoni;
 	}
 
  }
