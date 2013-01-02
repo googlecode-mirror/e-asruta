@@ -10,27 +10,26 @@ require_once '../lib/birojasa.php';
 $kd_member="select kd_member from members where kd_user = $_SESSION['kduser']";
 //echo $kd_users;
 
-$tambah = new birojasa_Dao();
-$birojasa = new birojasa();
+$cari=new birojasa_Dao();
+$xx = new birojasa();
 
-$data=$tambah->tambah_asisten();
 //echo $birojasa->kd_lowongan;
 if($_POST){
-$birojasa->kd_member=$kd_member;
-$birojasa->nm_asisten=$_POST['nm_asisten'];
-$birojasa->hapeasisten=$_POST['hapeasisten'];
-$birojasa->alamat_asisten=$_POST['alamat_asisten'];
-$birojasa->tgl_lahirasisten=$_POST['tgl_lahirasisten'];
-$birojasa->tmpt_lahirasisten=$_POST['tmpt_lahirasisten'];
-$birojasa->kota_asisten=$_POST['kota_asisten'];
-$birojasa->no_idasisten=$_POST['no_idasisten'];
-$birojasa->copy_asisten=$_POST['copy_asisten'];
-	if(empty($birojasa->nm_asisten) || empty($birojasa->hapeasisten) || empty($birojasa->alamat_asisten) || 
-		empty($birojasa->tgl_lahirasisten) || empty($birojasa->tmpt_lahirasisten) 
-		|| empty($birojasa->kota_asisten) || empty($birojasa->no_idasisten) || empty($birojasa->copy_asisten)){
+$xx->kd_member=$kd_member;
+$xx->nm_asisten=$_POST['nm_asisten'];
+$xx->hapeasisten=$_POST['hapeasisten'];
+$xx->alamat_asisten=$_POST['alamat_asisten'];
+$xx->tgl_lahirasisten=$_POST['tgl_lahirasisten'];
+$xx->tmpt_lahirasisten=$_POST['tmpt_lahirasisten'];
+$xx->kota_asisten=$_POST['kota_asisten'];
+$xx->no_idasisten=$_POST['no_idasisten'];
+$xx->copy_asisten=$_POST['copy_asisten'];
+	if(empty($xx->nm_asisten) || empty($xx->hapeasisten) || empty($xx->alamat_asisten) || 
+		empty($xx->tgl_lahirasisten) || empty($xx->tmpt_lahirasisten) 
+		|| empty($xx->kota_asisten) || empty($xx->no_idasisten) || empty($xx->copy_asisten)){
 		echo "Semua data harus diisi";
 	}else{
-		$tambah->tambah_asisten($birojasa);
+		$tambah->tambah_asisten($xx);
 		header('location:daftar_asisten.php');
 	}
 }
