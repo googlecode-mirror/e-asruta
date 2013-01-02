@@ -8,7 +8,7 @@
 
     class birojasa_dao{
         
-        function tambah_asisten(birojasa $birojasa, $kd_member){
+        function tambah_asisten(Birojasa $xx){
         
         $koneksi = new Koneksi();
 		
@@ -31,15 +31,15 @@
 			)
 			VALUES
 			(
-				'".$birojasa->kd_member."',
-				'".$birojasa->nm_asisten."',
-				'".$birojasa->hapeasisten."',
-				'".$birojasa->alamat_asisten."',
-				'".$birojasa->tgl_lahirasisten."',
-				'".$birojasa->tmpt_lahirasisten."',
-				'".$birojasa->kota_asisten."',
-				'".$birojasa->no_idasisten."',
-                '".$birojasa->copy_asisten."'
+				'".$xx->kd_member."',
+				'".$xx->nm_asisten."',
+				'".$xx->hapeasisten."',
+				'".$xx->alamat_asisten."',
+				'".$xx->tgl_lahirasisten."',
+				'".$xx->tmpt_lahirasisten."',
+				'".$xx->kota_asisten."',
+				'".$xx->no_idasisten."',
+                '".$xx->copy_asisten."'
 			)
 		" ;
 		$berhasil=mysql_query($sql);
@@ -47,7 +47,7 @@
 			echo "gagal";
 		}
 		
-		$birojasa->kd_member = mysql_insert_id();
+		$xx->kd_member = mysql_insert_id();
 		
 		$koneksi->tutupdb();
 	
@@ -110,11 +110,7 @@
 			
 			From
 			
-			asisten
-			where
-			kd_member = 
-			(select kd_members from members 
-			where kd_user = $_SESSION['kduser']";
+			asisten";
 			
 			mysql_query($sql);
 		

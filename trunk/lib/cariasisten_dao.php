@@ -149,6 +149,60 @@ class CariAsisten_Dao{
 	
 	}
 	
+	function daftarlowongan(){
+		$koneksi = new Koneksi();
+		$koneksi->pilihkonekdb();
+		
+		$sql = "
+		SELECT  
+		c.nm_member, 
+		d.jenis_lowongan, 
+		b.jns_keahlian, 
+		a.gaji, 
+		a.lokasi, 
+		a.jam_kerja, 
+		a.menginap, 
+		a.hari_kerja 
+		FROM 
+		lowongan as a
+		JOIN
+		keahlian as b
+		JOIN
+		members as c,
+		JOIN
+		jenis_lowongan as d
+		WHERE 
+		a.kd_keahlian=b.kd_keahlian
+		AND
+		a.pembuat_lamar = c.kd_member
+		AND
+		a.kd_jenislo = d.kd_jenislo
+		";
+		
+		$list_cari = array();
+		$res = mysql_query($sql);
+		if($res){
+			while($row = mysql_fetch_assoc($res)){
+				$cari = new CariAsisten();
+				$cari->pembuat_lamar=$row['pembuat_lamar'];
+				$cari->kd_asisten=$row['kd_asisten'];
+				$cari->kd_jenislo=$row['kd_jenislo'];
+				$cari->kd_keahlian=$row['jns_keahlian'];
+				$cari->gaji=$row['gaji'];
+				$cari->lokasi=$row['lokasi'];
+				$cari->jam_kerja=$row['jam_kerja'];
+				$cari->menginap=$row['menginap'];
+				$cari->hari_kerja=$row['hari_kerja'];		
+				
+				$list_cari[] = $cari;
+			}
+		}
+		
+		$koneksi->tutupdb();
+		return $list_cari;
+	
+	}
+	
 	//fungsi untuk menghapus pencarian asisten rumah tangga yang telah disubmit majikan
 	function hapusPencarian($id){
 		$koneksi = new Koneksi();
