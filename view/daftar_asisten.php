@@ -5,7 +5,7 @@ include '../lib/birojasa_dao.php';
 include '../lib/birojasa.php';
 
 $daftar = new birojasa_Dao();
-$data = $daftar->daftar_asisten($kd_member]);
+$data = $daftar->daftar_asisten($kd_member);
 ?>
 		<div id="contenttext">
 			<div class="bodytext" style="padding:12px;" align="justify">
