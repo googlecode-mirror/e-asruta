@@ -238,4 +238,85 @@ class CariAsisten_Dao{
 		$jumlah = mysql_fetch_array($itung);
 		return $jumlah['total'];
 	}
+
+
+//untuk mencari daftar pencarian kerja yang disubmit oleh biro jasa dan masih lowong
+function lihatPencariKerja($halaman,$limit){
+		$koneksi = new Koneksi();
+		$koneksi->pilihkonekdb();
+		
+		$sql = "
+		SELECT 
+		a.kd_lowongan, 
+		a.pembuat_lamar,
+		c.nama_biro,
+		d.nm_asisten, 
+		a.kd_jenislo, 
+		b.jns_keahlian, 
+		a.gaji, 
+		a.lokasi, 
+		a.jam_kerja, 
+		a.menginap, 
+		a.hari_kerja 
+		FROM 
+		lowongan as a
+		INNER JOIN
+		keahlian as b
+		ON 
+		a.kd_keahlian=b.kd_keahlian
+		INNER JOIN
+		members as c
+		ON
+		a.pembuat_lamar=c.kd_member
+		INNER JOIN 
+		asisten as d
+		ON
+		a.kd_asisten=d.kd_asisten
+		WHERE
+		kd_jenislo=2
+		ORDER BY a.kd_lowongan DESC
+		";
+		//echo $sql;
+		$list_cari = array();
+		$res = mysql_query($sql);
+		if($res){
+			while($row = mysql_fetch_assoc($res)){
+				$cari = new Lowongan();
+				$cari->kd_lowongan=$row['kd_lowongan'];
+				$cari->pembuat_lamar=$row['pembuat_lamar'];
+				$cari->nama_biro=$row['nama_biro'];
+				$cari->kd_asisten=$row['nm_asisten'];
+				$cari->kd_jenislo=$row['kd_jenislo'];
+				$cari->kd_keahlian=$row['jns_keahlian'];
+				$cari->gaji=$row['gaji'];
+				$cari->lokasi=$row['lokasi'];
+				$cari->jam_kerja=$row['jam_kerja'];
+				$cari->menginap=$row['menginap'];
+				$cari->hari_kerja=$row['hari_kerja'];		
+				
+				$list_cari[] = $cari;
+			}
+		}
+		
+		$koneksi->tutupdb();
+		return $list_cari;
+	
+	}
+	
+	function hitungPencariKerja() {
+		$koneksi = new Koneksi();
+		$koneksi->pilihkonekdb();
+		$sql="
+			SELECT 
+			count(*) as total 
+			FROM 
+			lowongan 
+			WHERE 
+			kd_asisten!=NULL
+		";
+		
+		$itung = mysql_query($sql);
+		$jumlah = mysql_fetch_array($itung);
+		return $jumlah['total'];
+	}
 }
