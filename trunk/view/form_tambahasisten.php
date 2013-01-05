@@ -7,7 +7,11 @@ require_once '../lib/birojasa.php';
 ?>
 <div id="contenttext">
 <?php
-$kd_member="select kd_member from members where kd_user = $_SESSION['kduser']";
+
+
+$aa="select kd_member from members where kd_user = $_SESSION[kduser]";
+
+$kd_member = mysql_query($aa);
 //echo $kd_users;
 
 $cari=new birojasa_Dao();
@@ -26,11 +30,11 @@ $xx->no_idasisten=$_POST['no_idasisten'];
 $xx->copy_asisten=$_POST['copy_asisten'];
 	if(empty($xx->nm_asisten) || empty($xx->hapeasisten) || empty($xx->alamat_asisten) || 
 		empty($xx->tgl_lahirasisten) || empty($xx->tmpt_lahirasisten) 
-		|| empty($xx->kota_asisten) || empty($xx->no_idasisten) || empty($xx->copy_asisten)){
+		|| empty($xx->kota_asisten) || empty($xx->no_idasisten)){
 		echo "Semua data harus diisi";
 	}else{
-		$tambah->tambah_asisten($xx);
-		header('location:daftar_asisten.php');
+		$cari->tambah_asisten($xx);
+		//header('location:daftar_asisten.php');
 	}
 }
 ?>
@@ -49,7 +53,7 @@ $xx->copy_asisten=$_POST['copy_asisten'];
 						<td>Alamat Asisten</td><td><input name="alamat_asisten" type="text" /></td> 
 					</tr>
 					<tr>
-						<td>Tanggal Lahir Asisten</td><td><input name="tgl_lahirasisten" type="text" /></td> 
+						<td>Tanggal Lahir Asisten</td><td><input name="tgl_lahirasisten" type="date" /></td> 
 					</tr>
 					</tr>
 					<tr>
@@ -62,7 +66,7 @@ $xx->copy_asisten=$_POST['copy_asisten'];
 						<td>Nomor ID Card (KTP / SIM)</td><td><input name="no_idasisten" type="text" /></td> 
 					</tr>
 					<tr>
-						<td>Gambar kopi ID Card</td><td><input name="copy_asisten" type="image" /></td> 
+						<td>Gambar kopi ID Card</td><td><input name="copy_asisten" type="text" /></td> 
 					</tr>
 					<tr>
 						<td></td>

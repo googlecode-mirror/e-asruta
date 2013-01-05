@@ -4,8 +4,10 @@ include_once 'sidebar.php';
 include '../lib/birojasa_dao.php';
 include '../lib/birojasa.php';
 
+$kd_member="select kd_member from members where kd_user = $_SESSION[kduser]";
+
 $daftar = new birojasa_Dao();
-$data = $daftar->daftar_asisten($kd_member);
+$data = $daftar->daftar_asisten();
 ?>
 		<div id="contenttext">
 			<div class="bodytext" style="padding:12px;" align="justify">
