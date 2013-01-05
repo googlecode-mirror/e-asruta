@@ -49,6 +49,39 @@ class CariAsisten_Dao{
 		$koneksi->tutupdb();
 	
 	}
+	
+	//fungsi untuk mengubah pencarian asisten rumah tangga
+	function ubahPencarian($id, Lowongan $cariasisten){
+	
+		$koneksi = new Koneksi();
+		
+		$koneksi->pilihkonekdb();
+		
+		$sql = "
+			UPDATE
+			lowongan
+			SET
+			kd_jenislo='".$cariasisten->kd_jenislo."', 
+			kd_keahlian=("SELECT FROM keahlian where jns_keahlian=='".$cariasisten->jns_keahlian."'"),
+			gaji='".$cariasisten->gaji."',
+			lokasi='".$cariasisten->lokasi."',
+			jam_kerja='".$cariasisten->jam_kerja."',
+			menginap='".$cariasisten->menginap."',
+			hari_kerja='".$cariasisten->hari_kerja."'
+			WHERE
+			kd_lowongan='".$i."'
+		" ;
+		$berhasil=mysql_query($sql);
+		if(!$berhasil){
+			echo "gagal";
+		}
+		
+		$cariasisten->kd_lowongan = mysql_insert_id();
+		
+		$koneksi->tutupdb();
+	
+	}
+	
 	//fungsi untuk menampilkan pencarian asisten rumah tangga berdasarkan id pencarian asisten rumah tangga
 	function cariPencarian($id){
 	
