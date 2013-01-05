@@ -26,7 +26,7 @@ $data=$testi->lihatTesti();
 				<?php 	}
 					} ?>
 				</table>
-					<td><?php echo '<a href="rekam_testimoni.php?id='.$testimoni->kd_testi.'" class="btn btn-primary">Isi Testimoni</a>' ; ?></td>
+					<td><?php echo '<a href="form_rekamtestimoni.php?id='.$testimoni->kd_testi.'" class="btn btn-primary">Isi Testimoni</a>' ; ?></td>
 			</div>
 		</div>
 <?php include 'footer.php'; ?>

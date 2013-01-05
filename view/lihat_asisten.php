@@ -2,7 +2,6 @@
 include_once 'header.php';
 include_once 'sidebar.php';
 include '../lib/cariasisten_dao.php';
-include '../lib/lowongan.php';
 
 $pencarian=new CariAsisten_Dao();
 $currentPage = 1;
@@ -53,7 +52,7 @@ $mulai=($currentPage - 1) * $pageSize;
 						<td><?php echo $cari->jam_kerja; ?></td>
 						<td><?php echo $cari->hari_kerja; ?></td>
 						<td><?php echo $cari->menginap; ?></td>
-						<td><?php echo '<a href="ubah_asisten.php?id='.$cari->kd_lowongan.'" class="icon-pencil"></a>' ; ?> | <?php echo '<a href="tanya_hapus.php?id='.$cari->kd_lowongan.'" class="icon-trash"></a>';?></td>
+						<td><?php echo '<a href="form_ubahasisten.php?id='.$cari->kd_lowongan.'" class="icon-pencil"></a>' ; ?> | <?php echo '<a href="tanya_hapus.php?id='.$cari->kd_lowongan.'" class="icon-trash"></a>';?></td>
 						</tr>
 						
 				<?php 	}
