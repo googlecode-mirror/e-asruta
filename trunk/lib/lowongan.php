@@ -16,5 +16,6 @@ class Lowongan{
 	var $lokasi;
 	var $menginap;
 	var $jns_keahlian;
+	var $biro_jasa;
 	
 }
