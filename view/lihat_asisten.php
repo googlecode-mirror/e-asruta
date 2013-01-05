@@ -2,7 +2,7 @@
 include_once 'header.php';
 include_once 'sidebar.php';
 include '../lib/cariasisten_dao.php';
-include '../lib/cari.asisten.php';
+include '../lib/lowongan.php';
 
 $pencarian=new CariAsisten_Dao();
 $currentPage = 1;
@@ -42,7 +42,7 @@ $mulai=($currentPage - 1) * $pageSize;
 	
 				<?php
 					$data = $pencarian->tampilSemuaCari($_SESSION['kduser'],$mulai,$pageSize);
-//					echo $mulai;
+//					echo $_SESSION['kduser'];
 //					echo $pageSize; 
 					if($data!=NULL){
 						foreach ($data as $cari){
