@@ -1,4 +1,5 @@
 <?php
+include '../lib/lowongan.php';
 /**
  * @author Arif Setiyanto
  * @copyright 2012
@@ -62,7 +63,7 @@ class CariAsisten_Dao{
 			lowongan
 			SET
 			kd_jenislo='".$cariasisten->kd_jenislo."', 
-			kd_keahlian=("SELECT FROM keahlian where jns_keahlian=='".$cariasisten->jns_keahlian."'"),
+			kd_keahlian='".$cariasisten->kd_keahlian."',
 			gaji='".$cariasisten->gaji."',
 			lokasi='".$cariasisten->lokasi."',
 			jam_kerja='".$cariasisten->jam_kerja."',
@@ -109,18 +110,16 @@ class CariAsisten_Dao{
 		$cari = false;
 		
 		$res = mysql_query($sql);
-		
+		$cari = new Lowongan();
 		if($res){
 		
 			$row = mysql_fetch_assoc($res);
-		
-			$cari = new Lowongan();
-			$cari->kd_keahlian=$row['JNS_KEAHLIAN'];
-			$cari->gaji=$row['GAJI'];
-			$cari->lokasi=$row['LOKASI'];
-			$cari->jam_kerja=$row['JAM_KERJA'];
-			$cari->menginap=$row['MENGINAP'];
-			$cari->hari_kerja=$row['HARI_KERJA'];	
+			$cari->kd_keahlian=$row['jns_keahlian'];
+			$cari->gaji=$row['gaji'];
+			$cari->lokasi=$row['lokasi'];
+			$cari->jam_kerja=$row['jam_kerja'];
+			$cari->menginap=$row['menginap'];
+			$cari->hari_kerja=$row['hari_kerja'];	
 		
 		}
 		

@@ -2,12 +2,9 @@
 include_once 'header.php';
 include_once 'sidebar.php';
 include '../lib/cariasisten_dao.php';
-include '../lib/cari.asisten.php';
 
 $id_asisten= $_GET['id'];
 $id=mysql_real_escape_string($id_asisten);
-$pencarian=new CariAsisten_Dao();
-$data=$pencarian->tampilSemuaCari($_SESSION['kduser']);
 ?>
 		<div id="contenttext">
 			<div class="bodytext" style="padding:12px;" align="justify">
