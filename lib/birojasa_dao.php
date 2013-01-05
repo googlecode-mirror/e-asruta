@@ -42,6 +42,7 @@
                 '".$xx->copy_asisten."'
 			)
 		" ;
+        
 		$berhasil=mysql_query($sql);
 		if(!$berhasil){
 			echo "gagal";
@@ -93,7 +94,7 @@
 			$koneksi->tutupdb();
         }
 		
-		function daftar_asisten(birojasa $kd_member){
+		function daftar_asisten(){
 			$koneksi = new Koneksi();
 			
 			$koneksi->pilihkonekdb();
