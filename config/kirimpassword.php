@@ -3,8 +3,7 @@
  * @author rizky
  * @copyright 2012
  */
-mysql_connect("localhost", "root", "");
-mysql_select_db("e-asruta");
+include 'koneksi.php';;
 
 $username = $_POST['username'];
 
@@ -38,7 +37,7 @@ $pengacak  = "NDJS3289JSKS190JISJI";
 $newPasswordEnkrip = md5($pengacak . md5($newPassword) . $pengacak);
 
 // mencari alamat email si user
-$query = "SELECT * FROM user WHERE username = '$username'";
+$query = "SELECT * FROM users WHERE username = '$username'";
 $hasil = mysql_query($query);
 $data  = mysql_fetch_array($hasil);
 $alamatEmail = $data['email'];
@@ -50,7 +49,7 @@ $title  = "New Password";
 $pesan  = "Username Anda : ".$username.". \nPassword Anda yang baru adalah ".$newPassword;
 
 // header email berisi alamat pengirim
-$header = "From: admin@situsku.com";
+$header = "From: asruta";
 
 // mengirim email
 $kirimEmail = mail($alamatEmail, $title, $pesan, $header);
