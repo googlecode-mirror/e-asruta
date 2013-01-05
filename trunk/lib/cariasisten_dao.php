@@ -81,13 +81,13 @@ class CariAsisten_Dao{
 		
 			$row = mysql_fetch_assoc($res);
 		
-			$cari = new CariAsisten();
-			$cari->kd_keahlian=$row['jns_keahlian'];
-			$cari->gaji=$row['gaji'];
-			$cari->lokasi=$row['lokasi'];
-			$cari->jam_kerja=$row['jam_kerja'];
-			$cari->menginap=$row['menginap'];
-			$cari->hari_kerja=$row['hari_kerja'];	
+			$cari = new Lowongan();
+			$cari->kd_keahlian=$row['JNS_KEAHLIAN'];
+			$cari->gaji=$row['GAJI'];
+			$cari->lokasi=$row['LOKASI'];
+			$cari->jam_kerja=$row['JAM_KERJA'];
+			$cari->menginap=$row['MENGINAP'];
+			$cari->hari_kerja=$row['HARI_KERJA'];	
 		
 		}
 		
@@ -115,75 +115,20 @@ class CariAsisten_Dao{
 		a.hari_kerja 
 		FROM 
 		lowongan as a
-		JOIN
+		INNER JOIN
 		keahlian as b
-		WHERE pembuat_lamar='".$kd_users."'
-		AND
+		ON 
 		a.kd_keahlian=b.kd_keahlian
-		ORDER BY kd_lowongan DESC
-		LIMIT $halaman,$limit
+		WHERE a.pembuat_lamar='".$kd_users."'
+		ORDER BY a.kd_lowongan DESC
 		";
-		
+		//echo $sql;
 		$list_cari = array();
 		$res = mysql_query($sql);
 		if($res){
 			while($row = mysql_fetch_assoc($res)){
-				$cari = new CariAsisten();
+				$cari = new Lowongan();
 				$cari->kd_lowongan=$row['kd_lowongan'];
-				$cari->pembuat_lamar=$row['pembuat_lamar'];
-				$cari->kd_asisten=$row['kd_asisten'];
-				$cari->kd_jenislo=$row['kd_jenislo'];
-				$cari->kd_keahlian=$row['jns_keahlian'];
-				$cari->gaji=$row['gaji'];
-				$cari->lokasi=$row['lokasi'];
-				$cari->jam_kerja=$row['jam_kerja'];
-				$cari->menginap=$row['menginap'];
-				$cari->hari_kerja=$row['hari_kerja'];		
-				
-				$list_cari[] = $cari;
-			}
-		}
-		
-		$koneksi->tutupdb();
-		return $list_cari;
-	
-	}
-	
-	function daftarlowongan(){
-		$koneksi = new Koneksi();
-		$koneksi->pilihkonekdb();
-		
-		$sql = "
-		SELECT  
-		c.nm_member, 
-		d.jenis_lowongan, 
-		b.jns_keahlian, 
-		a.gaji, 
-		a.lokasi, 
-		a.jam_kerja, 
-		a.menginap, 
-		a.hari_kerja 
-		FROM 
-		lowongan as a
-		JOIN
-		keahlian as b
-		JOIN
-		members as c,
-		JOIN
-		jenis_lowongan as d
-		WHERE 
-		a.kd_keahlian=b.kd_keahlian
-		AND
-		a.pembuat_lamar = c.kd_member
-		AND
-		a.kd_jenislo = d.kd_jenislo
-		";
-		
-		$list_cari = array();
-		$res = mysql_query($sql);
-		if($res){
-			while($row = mysql_fetch_assoc($res)){
-				$cari = new CariAsisten();
 				$cari->pembuat_lamar=$row['pembuat_lamar'];
 				$cari->kd_asisten=$row['kd_asisten'];
 				$cari->kd_jenislo=$row['kd_jenislo'];
@@ -237,8 +182,8 @@ class CariAsisten_Dao{
 		if($res){
 			while($row = mysql_fetch_assoc($res)){
 				$cari = new Lowongan();
-				$cari->kd_keahlian=$row['kd_keahlian'];
-				$cari->jns_keahlian=$row['jns_keahlian'];
+				$cari->kd_keahlian=$row['KD_KEAHLIAN'];
+				$cari->jns_keahlian=$row['JNS_KEAHLIAN'];
 				$daftar_keahlian[] = $cari;
 			}
 		}
