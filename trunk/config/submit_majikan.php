@@ -16,7 +16,7 @@ $password2 = $_POST['pass2'];
 // cek kesamaan password
 
 
-elseif ($password1 == $password2)
+if ($password1 == $password2)
 {
 	mysql_connect("localhost", "root", "");
 	mysql_select_db("e_asruta");

@@ -1,5 +1,13 @@
-<?php
-include 'config/waktu.php';
+<!--/**
+ * @author rizky
+ * @copyright 2012
+ */-->
+ <!--/**
+ * @author rizky
+ * @copyright 2012
+ */-->
+ <?php
+include 'waktu.php';
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -7,10 +15,10 @@ include 'config/waktu.php';
 <head>
 	<meta name="author" content="Wink Hosting (www.winkhosting.com)" />
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	<link rel="stylesheet" href="view/bootstrap/css/bootstrap.css" type="text/css" />
-	<title>Form Pencarian Asisten Rumah Tangga</title>
-</head>
-<body>
+	<link rel="stylesheet" href="../view/bootstrap/css/bootstrap.css" type="text/css" />
+	<title>regis_asisten</title>
+	</head>
+	<body>
 	<div id="page" align="center">
 		<div id="toppage" align="center">
 			<div id="date">
@@ -28,34 +36,39 @@ include 'config/waktu.php';
 				<div id="title" class="titletext" align="right">Website e-Asruta</div>
 			</div>
 		</div>
-		
 		<div id="content" align="left">
 			<div id="menu" align="right">
 			</div>
 		<div id="contenttext2">
 		  <div class="bodytext" style="padding:12px;" align="justify">
-				<form method="post" action="view/action.login.php">
-				<table>
-					<tr>
-						<td width="49">Username</td>
-						<td width="213"><input name="username" type="text" /></td> 
-					</tr>
-					<tr>
-						<td>Password</td>
-						<td>
 						  
-						  <div align="left">
-						    <input name="password" type="password" />
-					      </div></td></tr>
-					<tr>
-						<td></td>
-						<td><div align="right"><span class="bodytext" style="padding:12px;">
-						  <input name="submit" type="submit" value="Login"/>
-						  
-						  <div align="right">
-						    <a href="config/pendaftaran.php"><h5>ingin mendaftar?</a>
-					      </div>
-						  
+						  <form action="submit.php" method="post">
+<form action="submit_majikan.php" method="post">
+<table border="0">
+<tbody>
+<tr>
+<td>Masukkan Username</td>
+<td>
+<input name="username" type="text" /></td>
+</tr>
+<tr>
+<tr>
+<td>Masukkan Password</td>
+<td>
+<input name="password" type="password" /></td>
+</tr>
+<tr>
+<td>Ulangi Password</td>
+<td>
+<input name="pass2" type="password" /></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<input name="Submit" type="submit" value="Submit" /></td>
+</tr>
+</tbody></table>
+</form>					      </div>
 						  </td></tr>
 					    </span></div></td>
 					</tr>
@@ -71,3 +84,4 @@ include 'config/waktu.php';
 			
 </body>
 </html>
+
