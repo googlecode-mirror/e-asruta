@@ -63,15 +63,16 @@ class CariAsisten_Dao{
 			lowongan
 			SET
 			kd_jenislo='".$cariasisten->kd_jenislo."', 
-			kd_keahlian='".$cariasisten->kd_keahlian."',
+			kd_keahlian=(SELECT kd_keahlian from keahlian where jns_keahlian='".$cariasisten->kd_keahlian."' ),
 			gaji='".$cariasisten->gaji."',
 			lokasi='".$cariasisten->lokasi."',
 			jam_kerja='".$cariasisten->jam_kerja."',
 			menginap='".$cariasisten->menginap."',
 			hari_kerja='".$cariasisten->hari_kerja."'
 			WHERE
-			kd_lowongan='".$i."'
+			kd_lowongan='".$id."'
 		" ;
+		//echo $sql;
 		$berhasil=mysql_query($sql);
 		if(!$berhasil){
 			echo "gagal";
@@ -136,6 +137,7 @@ class CariAsisten_Dao{
 		$sql = "
 		SELECT 
 		a.kd_lowongan, 
+		a.kd_asisten,
 		a.pembuat_lamar, 
 		a.kd_asisten, 
 		a.kd_jenislo, 
@@ -160,6 +162,7 @@ class CariAsisten_Dao{
 		if($res){
 			while($row = mysql_fetch_assoc($res)){
 				$cari = new Lowongan();
+				$cari->kd_asisten=$row['kd_asisten'];
 				$cari->kd_lowongan=$row['kd_lowongan'];
 				$cari->pembuat_lamar=$row['pembuat_lamar'];
 				$cari->kd_asisten=$row['kd_asisten'];
@@ -171,6 +174,66 @@ class CariAsisten_Dao{
 				$cari->menginap=$row['menginap'];
 				$cari->hari_kerja=$row['hari_kerja'];		
 				
+				$list_cari[] = $cari;
+			}
+		}
+		
+		$koneksi->tutupdb();
+		return $list_cari;
+	
+	}
+	
+	//menampilkan lamaran yang masuk
+	function tampilkanLamaran($kd_lowongan){
+		$koneksi = new Koneksi();
+		$koneksi->pilihkonekdb();
+		
+		$sql = "
+		SELECT 
+		a.kd_lowongan,
+		a.kd_keahlian,
+		b.kd_asisten,
+		b.kd_member,
+		d.hape,
+		c.nm_asisten,
+		d.nama_biro,
+		e.jns_keahlian
+		FROM 
+		lowongan as a
+		JOIN
+		detail_lowongan as b
+		ON 
+		a.kd_lowongan=b.kd_lowongan
+		INNER JOIN
+		asisten as c
+		ON
+		b.kd_asisten=c.kd_asisten
+		INNER JOIN 
+		members as d
+		ON
+		d.kd_member=d.kd_member
+		INNER JOIN
+		keahlian as e
+		ON
+		a.kd_keahlian=e.kd_keahlian
+		WHERE a.kd_lowongan='".$kd_lowongan."'
+		AND 
+		d.nama_biro !=''
+		ORDER BY a.kd_lowongan DESC
+		";
+		//echo $sql;
+		$list_cari = array();
+		$res = mysql_query($sql);
+		if($res){
+			while($row = mysql_fetch_assoc($res)){
+				$cari = new Lowongan();
+				$cari->kd_lowongan=$row['kd_lowongan'];
+				$cari->pembuat_lamar=$row['kd_member'];
+				$cari->kd_asisten=$row['kd_asisten'];
+				$cari->nm_asisten=$row['nm_asisten'];
+				$cari->nama_biro=$row['nama_biro'];
+				$cari->jns_keahlian=$row['jns_keahlian'];
+				$cari->hape=$row['hape'];
 				$list_cari[] = $cari;
 			}
 		}
@@ -250,14 +313,17 @@ function lihatPencariKerja($halaman,$limit){
 		a.kd_lowongan, 
 		a.pembuat_lamar,
 		c.nama_biro,
+		c.hape,
 		d.nm_asisten, 
 		a.kd_jenislo, 
+		a.kd_keahlian,
 		b.jns_keahlian, 
 		a.gaji, 
 		a.lokasi, 
 		a.jam_kerja, 
 		a.menginap, 
-		a.hari_kerja 
+		a.hari_kerja,
+		e.nm_asisten		
 		FROM 
 		lowongan as a
 		INNER JOIN
@@ -272,6 +338,10 @@ function lihatPencariKerja($halaman,$limit){
 		asisten as d
 		ON
 		a.kd_asisten=d.kd_asisten
+		INNER JOIN
+		asisten as e
+		ON
+		a.kd_asisten=e.kd_asisten
 		WHERE
 		kd_jenislo=2
 		ORDER BY a.kd_lowongan DESC
@@ -287,12 +357,15 @@ function lihatPencariKerja($halaman,$limit){
 				$cari->nama_biro=$row['nama_biro'];
 				$cari->kd_asisten=$row['nm_asisten'];
 				$cari->kd_jenislo=$row['kd_jenislo'];
-				$cari->kd_keahlian=$row['jns_keahlian'];
+				$cari->jns_keahlian=$row['jns_keahlian'];
+				$cari->kd_keahlian=$row['kd_keahlian'];
 				$cari->gaji=$row['gaji'];
 				$cari->lokasi=$row['lokasi'];
 				$cari->jam_kerja=$row['jam_kerja'];
 				$cari->menginap=$row['menginap'];
 				$cari->hari_kerja=$row['hari_kerja'];		
+				$cari->hape=$row['hape'];
+				$cari->nm_asisten=$row['nm_asisten'];
 				
 				$list_cari[] = $cari;
 			}
