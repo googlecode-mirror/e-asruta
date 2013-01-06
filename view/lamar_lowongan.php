@@ -52,18 +52,22 @@ $kd_lowongan=mysql_real_escape_string($id);
 				<?php 	}
 					} ?>
 			</table>
-			
+			<fieldset>
 			<div class="control-group">  
             <label class="control-label" for="select01">Select list</label>  
             <div class="controls">  
               <select id="select01">  
                 <?php 
-				$data = $lowongan->cari_lamar();
-				echo $data->$options;				
+				$lowongan->cari_lamar();				
 				?>
               </select>  
             </div>  
+          </div>
+		   <div class="form-actions">  
+            <button type="submit" class="btn btn-primary">Lamar</button>  
+            <button class="btn">Cancel</button>  
           </div>  
+		</fieldset>
 		</body>
 </html>
             
