@@ -13,7 +13,8 @@ $pencarian=new CariAsisten_Dao();
 						<td>Kontak</td>
 						<td>Aksi</td>
 				<?php
-					$data = $pencarian->tampilkanLamaran($_GET['id']);
+					$kd_lowongan=$_GET['id'];
+					$data = $pencarian->tampilkanLamaran($kd_lowongan);
 //					echo $_SESSION['kduser'];
 //					echo $pageSize; 
 					if($data!=NULL){
@@ -21,6 +22,11 @@ $pencarian=new CariAsisten_Dao();
 				?>				
 				   <tr>	<td><?php echo $cari->nm_asisten."<br>".$cari->nama_biro;?></td>
 						<td><?php echo $cari->hape;?></td>
+						<td><form method="POST" action="aksi_lamaran.php" multipart="enctype/form-data">
+						<input type="hidden" name="kd_asisten" value="<?php echo $cari->kd_asisten;?>">
+						<input type="hidden" name="kd_lowongan" value="<?php echo $kd_lowongan;?>">
+						<input type="submit" value="Terima Lamaran"></form></td>
+						
 						</tr>
 						
 				<?php 	}

@@ -31,10 +31,10 @@ $mulai=($currentPage - 1) * $pageSize;
 					
 				<table border="2" align="left" class="table table-striped">
 					<tr>
-						<td>Kode Lowongan dan Keterampilan</td>
+						<td>Kode Lown dan Ket</td>
 						<td>Gaji</td>
 						<td>Lokasi</td>
-						<td>Jam dan Hari Kerja</td>
+						<td>Jam & Hari Krj</td>
 						<td>Menginap</td> 
 						<td>Asisten</td>
 						<td>Status</td>
@@ -48,12 +48,12 @@ $mulai=($currentPage - 1) * $pageSize;
 					if($data!=NULL){
 						foreach ($data as $cari){
 				?>				
-				   <tr>	<td><?php echo '<a href="lihat_lamaran.php?id='.$cari->kd_lowongan.'">'.$cari->kd_lowongan.' '.$cari->jns_keahlian.'</a>';?></td>
+				   <tr>	<td><?php echo '<a href="lihat_lamaran.php?id='.$cari->kd_lowongan.'">'.$cari->kd_lowongan.'<br>'.$cari->jns_keahlian.'</a>';?></td>
 						<td><?php echo $cari->gaji;?></td>
 						<td><?php echo $cari->lokasi; ?></td>
 						<td><?php echo $cari->jam_kerja."<br>".$cari->hari_kerja; ?></td>
 						<td><?php echo $cari->menginap; ?></td>
-						<td><?php echo $cari->kd_asisten; ?></td>
+						<td><?php echo $cari->nm_asisten; ?></td>
 						<td><?php if($cari->kd_asisten==''){
 							echo "Tersedia";
 						}else{

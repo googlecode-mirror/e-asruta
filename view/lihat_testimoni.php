@@ -8,6 +8,7 @@ $testi=new Testimoni_Dao();
 $data=$testi->lihatTesti();
 ?>
 		<div id="contenttext">
+		<h4 align="center">Testimoni</h4>
 			<div class="bodytext" style="padding:12px;" align="justify">
 				<table border="2" align="left" class="table table-striped">
 					<tr>
