@@ -1,9 +1,13 @@
+ <head>
+<meta http-equiv="refresh" content="5; URL=http://localhost/asru/">
+</head>
  <?php
 /**
  * @author rizky
  * @copyright 2012
  */
-include 'koneksi.php';;
+mysql_connect("localhost", "root", "");
+	mysql_select_db("e_asruta");
 
 $username = $_POST['username'];
 
@@ -30,14 +34,11 @@ return $pass;
 // membuat password baru secara random -> memanggil function randomPassword
 $newPassword = randomPassword();
 
-// perlu dibuat sebarang pengacak
-$pengacak  = "NDJS3289JSKS190JISJI";
-
-// mengenkripsi password dengan md5() dan pengacak
-$newPasswordEnkrip = md5($pengacak . md5($newPassword) . $pengacak);
 
 // mencari alamat email si user
-$query = "SELECT * FROM users WHERE username = '$username'";
+ 
+$query = "SELECT email FROM members 
+LEFT JOIN users USING (KD_USER) WHERE username = '$username'";
 $hasil = mysql_query($query);
 $data  = mysql_fetch_array($hasil);
 $alamatEmail = $data['email'];
@@ -58,7 +59,7 @@ $kirimEmail = mail($alamatEmail, $title, $pesan, $header);
 if ($kirimEmail) {
 
     // update password baru ke database (jika pengiriman email sukses)
-    $query = "UPDATE user SET password = '$newPasswordEnkrip' WHERE username = '$username'";
+    $query = "UPDATE users SET password = '$newPassword' WHERE username = '$username'";
     $hasil = mysql_query($query);
 
     if ($hasil) echo "Password baru telah direset dan sudah dikirim ke email Anda";
