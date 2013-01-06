@@ -72,9 +72,11 @@
 		$koneksi->tutupdb();
         }
     
-        function edit_asisten(birojasa $birojasa){
+        function edit_asisten($id_asisten){
             $koneksi = new Koneksi();
             $koneksi->pilihkonekdb();
+			
+			$birojasa = new birojasa();
             
             $sql = "
             Update
@@ -87,7 +89,7 @@
             kota_asisten = '".$birojasa->kota_asisten."',
             no_idasisten = '".$birojasa->no_idasisten."',
             copy_asisten = '".$birojasa->copy_asisten."'
-			where kd_asisten = ".$birojasa->kd_asisten."'";
+			where kd_asisten = ".$id_asisten."'";
 			
 			mysql_query($sql);
 		
@@ -101,22 +103,39 @@
             
             $sql = "
 			Select
+			kd_asisten,
 			nm_asisten,
 			hapeasisten,
-			alamat_asisten,
-			tgl_lahirasisten,
+			alamat_asisten,	
+			kota_asisten,		
 			tmpt_lahirasisten,
-			kota_asisten,
-			no_idasisten
+			tgl_lahirasisten
 			From
 			asisten
 			Where
-			kd_member = $kd_member
+			kd_member = '".$kd_member."'
 			";
 			
-			mysql_query($sql);
+			$list_cari = false;
 		
-			$koneksi->tutupdb();
+			$res = mysql_query($sql);
+			if($res){
+				while($row = mysql_fetch_assoc($res)){
+					$cari = new birojasa();
+					$cari->kd_asisten=$row['kd_asisten'];
+					$cari->nm_asisten=$row['nm_asisten'];
+					$cari->hapeasisten=$row['hapeasisten'];
+					$cari->alamat_asisten=$row['alamat_asisten'];
+					$cari->kota_asisten=$row['kota_asisten'];
+					$cari->tmpt_lahirasisten=$row['tmpt_lahirasisten'];
+					$cari->tgl_lahirasisten=$row['tgl_lahirasisten'];
+					
+					$list_cari[] = $cari;
+				}
+			}
+		
+		$koneksi->tutupdb();
+		return $list_cari;
 	}
 }
 
