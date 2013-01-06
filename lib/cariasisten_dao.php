@@ -318,19 +318,18 @@ function lihatPencariKerja($halaman,$limit){
 		$sql = "
 		SELECT 
 		a.kd_lowongan, 
-		a.pembuat_lamar,
-		c.nama_biro,
-		c.hape,
-		d.nm_asisten, 
 		a.kd_jenislo, 
 		a.kd_keahlian,
-		b.jns_keahlian, 
 		a.gaji, 
 		a.lokasi, 
 		a.jam_kerja, 
 		a.menginap, 
 		a.hari_kerja,
-		e.nm_asisten		
+		a.pembuat_lamar,
+		b.jns_keahlian, 
+		c.nama_biro,
+		c.hape,
+		d.nm_asisten		
 		FROM 
 		lowongan as a
 		INNER JOIN
@@ -345,14 +344,11 @@ function lihatPencariKerja($halaman,$limit){
 		asisten as d
 		ON
 		a.kd_asisten=d.kd_asisten
-		INNER JOIN
-		asisten as e
-		ON
-		a.kd_asisten=e.kd_asisten
-		WHERE
-		kd_jenislo=2
+		WHERE a.kd_jenislo=2
 		ORDER BY a.kd_lowongan DESC
+		LIMIT $halaman,$limit
 		";
+		
 		//echo $sql;
 		$list_cari = array();
 		$res = mysql_query($sql);
@@ -392,7 +388,7 @@ function lihatPencariKerja($halaman,$limit){
 			FROM 
 			lowongan 
 			WHERE 
-			kd_asisten!=NULL
+			kd_jenislo=2 AND kd_status=1
 		";
 		
 		$itung = mysql_query($sql);

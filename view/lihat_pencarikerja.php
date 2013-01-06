@@ -15,6 +15,7 @@ $mulai=($currentPage - 1) * $pageSize;
 ?>
 		<div id="contenttext">
 			<div class="bodytext" style="padding:12px;" align="justify">
+			<h4>Daftar Pencari Kerja Asisten Rumah Tangga</h4>
 				 <form method="get">
 					Halaman :
 					<select name="page" with="5" onchange="this.form.submit();">
