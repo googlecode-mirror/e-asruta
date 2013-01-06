@@ -8,7 +8,7 @@ require_once '../lib/birojasa.php';
 <div id="contenttext">
 <?php
 
-$kd_member = $_SESSION[kduser];
+$kd_member = $_SESSION['kduser'];
 //echo $kd_users;
 
 $cari=new birojasa_Dao();
@@ -50,15 +50,15 @@ $xx->copy_asisten=$_POST['copy_asisten'];
 						<td>Alamat Asisten</td><td><input name="alamat_asisten" type="text" /></td> 
 					</tr>
 					<tr>
-						<td>Tanggal Lahir Asisten</td><td><input name="tgl_lahirasisten" type="date" /></td> 
-					</tr>
+						<td>Kota</td><td><input name="kota_asisten" type="text" /></td> 
 					</tr>
 					<tr>
 						<td>Tempat Lahir Asisten</td><td><input name="tmpt_lahirasisten" type="text" /></td> 
 					</tr>
 					<tr>
-						<td>Kota</td><td><input name="kota_asisten" type="text" /></td> 
+						<td>Tanggal Lahir Asisten</td><td><input name="tgl_lahirasisten" type="date" /></td> 
 					</tr>
+					</tr>									
 					<tr>
 						<td>Nomor ID Card (KTP / SIM)</td><td><input name="no_idasisten" type="text" /></td> 
 					</tr>
