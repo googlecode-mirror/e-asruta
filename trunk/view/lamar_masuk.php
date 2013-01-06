@@ -4,6 +4,7 @@ include_once 'sidebar_birojasa.php';
 include '../lib/carimajikan_dao.php';
 include '../lib/Lowongan.php';
 
+$kd_member = $_SESSION['kduser'];
 $lihat = new CariMajikan_Dao();
 $currentPage = 1;
 if (isset($_GET['page'])) {
@@ -32,37 +33,25 @@ $mulai=($currentPage - 1) * $pageSize;
 				<table border="2" align="left" class="table table-striped">
 					<tr>
 						<td>Pembuat Lowongan</td>
-						<td>Jenis Lowongan</td>
-						<td>Keahlian</td>
-						<td>Hari Kerja</td>
-						<td>Jam Kerja</td>
-						<td>Menginap Tidak?</td> 
-						<td>Lokasi</td>
-						<td>Gaji</td>
-						<td>Aksi</td>
+						<td>Nama Asisten</td>
+						<td>Status Lowongan</td>
 					</tr>
 	
 				<?php
-					$data = $lihat->daftar_lo($mulai,$pageSize); 
+					$data = $lihat->cari_khusus($kd_member); 
 					if($data!=NULL){
 						foreach ($data as $cari){
 				?>				
 				   <tr>	<td><?php echo $cari->nm_member; ?></td>
-						<td><?php echo $cari->jenis_lowongan;?></td>
-						<td><?php echo $cari->jns_keahlian; ?></td>
-						<td><?php echo $cari->hari_kerja; ?></td>
-						<td><?php echo $cari->jam_kerja; ?></td>
-						<td><?php echo $cari->menginap; ?></td>
-						<td><?php echo $cari->lokasi; ?></td>
-						<td><?php echo $cari->gaji; ?></td>
+						<td><?php echo $cari->nm_asisten;?></td>
+						<td><?php echo $cari->ket_status; ?></td>
 						<td><?php echo '<a href="lamar_lowongan.php?id='.$cari->kd_lowongan.'" class="icon-pencil"></a>' ; ?> </td>
 						</tr>
 						
 				<?php 	}
 					} ?>
 				</table>
+				
 			</div>
-				<a href="lamar_masuk.php" title="Lowongan">Lihat Status Lamaran</a>
 		</div>
-		
 <?php include 'footer.php'; ?>

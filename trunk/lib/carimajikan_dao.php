@@ -46,7 +46,7 @@
 			$res = mysql_query($sql);
 			if($res){
 				while($row = mysql_fetch_assoc($res)){
-					$cari = new CariMajikan();
+					$cari = new Lowongan();
 					$cari->kd_lowongan=$row['kd_lowongan'];
 					$cari->nm_member=$row['nm_member'];
 					$cari->jenis_lowongan=$row['lowongan'];
@@ -103,7 +103,7 @@
 			$res = mysql_query($sql);
 			if($res){
 				while($row = mysql_fetch_assoc($res)){
-					$cari = new CariMajikan();
+					$cari = new Lowongan();
 					$cari->nm_member=$row['nm_member'];
 					$cari->jenis_lowongan=$row['lowongan'];
 					$cari->jns_keahlian=$row['keahlian'];
@@ -121,33 +121,54 @@
 		return $list_cari;
     	}
         
-        public function cari_khusus(){
-            	$koneksi = new Koneksi();
+        public function cari_khusus($kd_member){
+            $koneksi = new Koneksi();
     		$koneksi->pilihkonekdb();
     		
     		$sql = "
     		SELECT 
-            b.jenis_lowongan,
-    		a.pembuat_lamar,
-    		c.jns_keahlian,
-    		a.jam_kerja,
-    		a.menginap,
-    		a.hari_kerja,
-            a.lokasi,
-            a.gaji
+    		a.nm_member,
+    		b.nm_asisten,
+            c.ket_status
     		FROM
-    		lowongan as a
+    		members as a
     		JOIN
-    		keahlian as c
+    		asisten as b
             JOIN
-            jenis_lowongan as b
+            status_lowongan as c
+			JOIN
+			detail_lowongan as d
+            JOIN
+            lowongan as e
             
             WHERE
-            a.kd_jenislo = b.kd_jenislo
+            a.kd_member = e.pembuat_lamar
             AND
-            a.kd_keahlian = c.kd_keahlian
+            e.kd_lowongan = d.kd_lowongan
             and 
-            a.kd_jenislo like ";
+            d.kd_asisten = b.kd_asisten
+			AND
+			e.kd_status = c.kd_status
+			AND
+			b.kd_member = '".$kd_member."'
+			";
+			
+			$list_cari = false;
+		
+			$res = mysql_query($sql);
+			if($res){
+				while($row = mysql_fetch_assoc($res)){
+					$cari = new Lowongan();
+					$cari->nm_member=$row['nm_member'];
+					$cari->nm_asisten=$row['nm_asisten'];
+					$cari->ket_status=$row['ket_status'];
+					
+					$list_cari[] = $cari;
+				}
+			}
+		
+		$koneksi->tutupdb();
+		return $list_cari;
         }
         
         public function cari_lamar(){

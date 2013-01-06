@@ -2,7 +2,7 @@
 include_once 'header.php';
 include_once 'sidebar_birojasa.php';
 include '../lib/carimajikan_dao.php';
-include '../lib/cari.majikan.php';
+include '../lib/Lowongan.php';
 
 
 $lowongan = new CariMajikan_Dao();
