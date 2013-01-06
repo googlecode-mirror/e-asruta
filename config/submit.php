@@ -21,14 +21,9 @@ if ($password1 == $password2)
 	mysql_connect("localhost", "root", "");
 	mysql_select_db("e_asruta");
 
-	// perlu dibuat sebarang pengacak
-	$pengacak  = "NDJS3289JSKS190JISJI";
-
-	// mengenkripsi password dengan md5() dan pengacak
-	$password1 = md5($pengacak . md5($password1) . $pengacak);
 
 	// menyimpan username dan password terenkripsi ke database
-	$query = "INSERT INTO users VALUES(' ','$username', '$password1', '2')";
+	$query = "INSERT INTO users VALUES(' ', '2', '$username', '$password1' )";
 	$hasil = mysql_query($query);
 
 	// menampilkan status pendaftaran
