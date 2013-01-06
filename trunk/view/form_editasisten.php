@@ -7,15 +7,16 @@ require_once '../lib/birojasa.php';
 ?>
 <div id="contenttext">
 <?php
-$kd_member="select kd_member from members where kd_user = $_SESSION['kduser']";
+$kd_member = $_SESSION['kduser'];
 //echo $kd_users;
 
 $edit = new birojasa_Dao();
 $birojasa = new birojasa();
+//echo $_GET['id'];
+$id = $_GET['id'];
+$id_asisten=mysql_real_escape_string($id);
 
-$kd_asist = $_GET['kd_asisten'];
-
-$data=$edit->edit_asisten();
+$data=$edit->edit_asisten($id_asisten);
 //echo $birojasa->kd_lowongan;
 if($_POST){
 $birojasa->kd_asisten=$kd_asisten;
