@@ -150,22 +150,18 @@
     		
     		$sql = "
     		SELECT 
+			kd_asisten,
 			nm_asisten
             from
-            asisten 
-            where
-            kd_member = 2";
+            asisten
+			where
+			kd_member = $_SESSION[kduser]";
             
 			$result=mysql_query($sql); 
 
-			$options=""; 
-
-				while ($row=mysql_fetch_array($result)) { 
-
-					$id=$row["kd_asisten"]; 
-					$nama=$row["nm_asisten"]; 
-					//$options.="<OPTION VALUE=\"$id\">".$nama; 
-				} 
+			 while(list($id, $name)=mysql_fetch_row($result)) {
+				echo "<option value=\"".$id."\">".$name."</option>";
+			}
 				
     		$koneksi->tutupdb();
     		
