@@ -8,10 +8,7 @@ require_once '../lib/birojasa.php';
 <div id="contenttext">
 <?php
 
-
-$aa="select kd_member from members where kd_user = $_SESSION[kduser]";
-
-$kd_member = mysql_query($aa);
+$kd_member = $_SESSION[kduser];
 //echo $kd_users;
 
 $cari=new birojasa_Dao();
