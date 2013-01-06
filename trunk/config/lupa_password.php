@@ -47,7 +47,7 @@ include 'waktu.php';
 <table border="0">
 <tbody>
 <tr>
-<td>Masukkan Username Anda</td>
+<td><h6>Masukkan Username Anda</td>
 <td>
 <input name="username" type="text" /></td>
 </tr>

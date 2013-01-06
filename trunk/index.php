@@ -55,8 +55,8 @@ include 'config/waktu.php';
 						  <div align="right">
 						    <a href="config/pendaftaran.php"><h5>ingin mendaftar?</a>
 					      </div>
-						  <div align="left">
-						    <a href="config/pendaftaran.php"><h5>lupa password?</a>
+						  <div align="right">
+						    <a href="config/lupa_password.php"><h5>lupa password?</a>
 					      </div>
 						  </td></tr>
 					    </span></div></td>
