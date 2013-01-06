@@ -48,7 +48,7 @@ $mulai=($currentPage - 1) * $pageSize;
 				   <tr>	<td><?php echo $cari->nm_asisten."<br>".$cari->nama_biro;?></td>
 						<td><?php echo $cari->hape;?></td>
 						<td><?php echo $cari->lokasi; ?></td>
-						<td><?php echo $cari->jam_kerja."<br>".$cari->jam_kerja; ?></td>
+						<td><?php echo $cari->jam_kerja."<br>".$cari->hari_kerja; ?></td>
 						<td><?php echo $cari->gaji; ?></td>
 						<td><?php echo $cari->menginap; ?></td>
 						</tr>

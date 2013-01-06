@@ -26,7 +26,8 @@ class CariAsisten_Dao{
 			`lokasi`, 
 			`jam_kerja`, 
 			`menginap`, 
-			`hari_kerja`
+			`hari_kerja`,
+			`kd_status`
 			)
 			VALUES
 			(
@@ -37,7 +38,8 @@ class CariAsisten_Dao{
 				'".$cariasisten->lokasi."',
 				'".$cariasisten->jam_kerja."',
 				'".$cariasisten->menginap."',
-				'".$cariasisten->hari_kerja."'
+				'".$cariasisten->hari_kerja."',
+				1
 			)
 		" ;
 		$berhasil=mysql_query($sql);
@@ -155,6 +157,7 @@ class CariAsisten_Dao{
 		a.kd_keahlian=b.kd_keahlian
 		WHERE a.pembuat_lamar='".$kd_users."'
 		ORDER BY a.kd_lowongan DESC
+		LIMIT $halaman,$limit
 		";
 		//echo $sql;
 		$list_cari = array();
@@ -167,7 +170,7 @@ class CariAsisten_Dao{
 				$cari->pembuat_lamar=$row['pembuat_lamar'];
 				$cari->kd_asisten=$row['kd_asisten'];
 				$cari->kd_jenislo=$row['kd_jenislo'];
-				$cari->kd_keahlian=$row['jns_keahlian'];
+				$cari->jns_keahlian=$row['jns_keahlian'];
 				$cari->gaji=$row['gaji'];
 				$cari->lokasi=$row['lokasi'];
 				$cari->jam_kerja=$row['jam_kerja'];
@@ -219,6 +222,10 @@ class CariAsisten_Dao{
 		WHERE a.kd_lowongan='".$kd_lowongan."'
 		AND 
 		d.nama_biro !=''
+		AND
+		b.kd_status='0' OR b.kd_status='1'
+		AND
+		a.kd_status=1
 		ORDER BY a.kd_lowongan DESC
 		";
 		//echo $sql;
@@ -391,5 +398,50 @@ function lihatPencariKerja($halaman,$limit){
 		$itung = mysql_query($sql);
 		$jumlah = mysql_fetch_array($itung);
 		return $jumlah['total'];
+	}
+	
+	function tentukanPembantu($kd_lowongan,$kd_asisten,$status){
+		$koneksi = new Koneksi();
+		$koneksi->pilihkonekdb();
+		$sql1="
+			UPDATE
+			lowongan
+			SET
+			kd_asisten=$kd_asisten,kd_status=2
+			where
+			kd_lowongan=$kd_lowongan
+		";
+		
+		$hasil1= mysql_query($sql1);
+		
+		$sql2="
+			UPDATE
+			detail_lowongan
+			SET
+			kd_status=$status
+			where
+			kd_lowongan=$kd_lowongan
+			AND
+			kd_asisten=$kd_asisten
+		";
+		print_r($sql2);
+		$hasil2= mysql_query($sql2);
+		
+		$sql3="
+			UPDATE
+			detail_lowongan
+			SET
+			kd_status=3
+			where
+			kd_lowongan=$kd_lowongan
+			AND
+			kd_asisten!=$kd_asisten
+		";
+		//print_r($sql3);
+		$hasil3= mysql_query($sql3);
+		
+		
+		$koneksi->tutupdb();
+		return true;
 	}
 }

@@ -10,26 +10,29 @@ $kd_lowongan=mysql_real_escape_string($id);
 $cari= new CariAsisten_Dao();
 $cariasisten= new Lowongan();
 $hasil=$cari->cariPencarian($kd_lowongan);
-if($_POST){
-$cariasisten->kd_jenislo=1;
-$cariasisten->kd_keahlian=$_POST['keterampilan'];
-$cariasisten->gaji=$_POST['gaji'];
-$cariasisten->lokasi=$_POST['lokasi'];
-$cariasisten->hari_kerja=$_POST['hari_kerja'];
-$cariasisten->menginap=$_POST['menginap'];
-$cariasisten->jam_kerja=$_POST['jam_kerja'];
-	if(empty($cariasisten->kd_keahlian) || empty($cariasisten->gaji) || empty($cariasisten->lokasi) || 
-			empty($cariasisten->hari_kerja) || empty($cariasisten->menginap) || empty($cariasisten->jam_kerja)){
-		echo "Semua data harus diisi";
-	}else{
-		$cari->ubahPencarian($kd_lowongan,$cariasisten);
-		header('location:lihat_asisten.php');
-	}
-}
 ?>
 
 
 		<div id="contenttext">
+		<h4>Form Ubah Pencarian Asisten Rumah Tangga</h4>
+		<?php
+		if($_POST){
+			$cariasisten->kd_jenislo=1;
+			$cariasisten->kd_keahlian=$_POST['keterampilan'];
+			$cariasisten->gaji=$_POST['gaji'];
+			$cariasisten->lokasi=$_POST['lokasi'];
+			$cariasisten->hari_kerja=$_POST['hari_kerja'];
+			$cariasisten->menginap=$_POST['menginap'];
+			$cariasisten->jam_kerja=$_POST['jam_kerja'];
+				if(empty($cariasisten->kd_keahlian) || empty($cariasisten->gaji) || empty($cariasisten->lokasi) || 
+						empty($cariasisten->hari_kerja) || empty($cariasisten->menginap) || empty($cariasisten->jam_kerja)){
+					echo "Semua data harus diisi";
+				}else{
+					$cari->ubahPencarian($kd_lowongan,$cariasisten);
+					header('location:lihat_asisten.php');
+				}
+		}
+		?>
 			<div class="bodytext" style="padding:12px;" align="justify">
 				<form method="post" action="">
 				<table>
