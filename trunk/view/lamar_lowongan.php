@@ -10,7 +10,7 @@ $id= $_GET['id'];
 $kd_lowongan=mysql_real_escape_string($id);
 
 ?>
-
+	
 	<div id="contenttext">
 		<div class="bodytext" style="padding:12px;" align="justify">
 			<table border="2" align="center" class="table table-striped">
@@ -28,22 +28,23 @@ $kd_lowongan=mysql_real_escape_string($id);
 				<?php
 				$data = $lowongan->daftar_low($kd_lowongan);
 				if($data!=NULL){
-					foreach ($data as $cari){
+					foreach ($data as $liat){
 				?>				
-				<tr><td><?php echo $cari->nm_member; ?></td>
-					<td><?php echo $cari->jenis_lowongan;?></td>
-					<td><?php echo $cari->jns_keahlian; ?></td>
-					<td><?php echo $cari->hari_kerja; ?></td>
-					<td><?php echo $cari->jam_kerja; ?></td>
-					<td><?php echo $cari->menginap; ?></td>
-					<td><?php echo $cari->lokasi; ?></td>
-					<td><?php echo $cari->gaji; ?></td>
+				<tr><td><?php echo $liat->nm_member; ?></td>
+					<td><?php echo $liat->jenis_lowongan;?></td>
+					<td><?php echo $liat->jns_keahlian; ?></td>
+					<td><?php echo $liat->hari_kerja; ?></td>
+					<td><?php echo $liat->jam_kerja; ?></td>
+					<td><?php echo $liat->menginap; ?></td>
+					<td><?php echo $liat->lokasi; ?></td>
+					<td><?php echo $liat->gaji; ?></td>
 				</tr>
 						
 				<?php 	}
 					} ?>
 			</table>
 			<fieldset>
+			<form class="form-horizontal" id="edithere" method='post' action='action_lamar.php'>
 			<div class="control-group">  
             <label class="control-label" for="select01">Asisten Yang Akan Di Lamarkan</label>  
             <div class="controls">  
@@ -55,11 +56,11 @@ $kd_lowongan=mysql_real_escape_string($id);
             </div>  
           </div>
 		   <div class="form-actions">  
-            <button type="submit" class="btn btn-primary">Lamar</button>  
-            <button class="btn">Cancel</button>  
-          </div>  
+            <button type="submit" name="submit" class="btn btn-primary">Lamar</button>  
+            <a class="btn" href="../view/lihat_lowongan.php">Cancel</a>  
+          </div>
+		</form>
 		</fieldset>
-		</div>
-		</div>
+
 
 <?php include 'footer.php'; ?>

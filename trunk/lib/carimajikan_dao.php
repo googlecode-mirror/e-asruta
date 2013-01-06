@@ -33,6 +33,8 @@
 			JOIN
 			members as d
     		WHERE
+			a.pembuat_lamar = d.kd_member
+			AND
             a. kd_jenislo = b.kd_jenislo
             AND
             a.kd_keahlian = c.kd_keahlian
@@ -87,13 +89,17 @@
 			JOIN
 			members as d
     		WHERE
+			a.pembuat_lamar = d.kd_member
+			AND
             a. kd_jenislo = b.kd_jenislo
             AND
             a.kd_keahlian = c.kd_keahlian
-			ORDER BY kd_lowongan ASC
+			AND 
+			a.kd_lowongan = '".$kd_lowongan."'
     		";
     		
-    		$list_cari = array();
+    		$list_cari = false;
+		
 			$res = mysql_query($sql);
 			if($res){
 				while($row = mysql_fetch_assoc($res)){
@@ -159,9 +165,16 @@
             
 			$result=mysql_query($sql); 
 
-			 while(list($id, $name)=mysql_fetch_row($result)) {
-				echo "<option value=\"".$id."\">".$name."</option>";
+			 while(list($kode, $nama)=mysql_fetch_row($result)) {
+				echo "<option value=\"".$kode."\">".$nama."</option>";
 			}
+			
+			//$options="";
+			//	while ($row=mysql_fetch_array($result)) {
+			//		$id=$row["kd_asisten"];
+			//		$nama=$row["nm_asisten"];
+			//		$options.="<OPTION VALUE=\"$id\">".$nama;
+			//	}
 				
     		$koneksi->tutupdb();
     		
@@ -181,6 +194,10 @@
 		$itung = mysql_query($sql);
 		$jumlah = mysql_fetch_array($itung);
 		return $jumlah['total'];
+	}
+	
+		function lamar(){
+		
 	}
 	
     }

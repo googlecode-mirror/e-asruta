@@ -43,9 +43,7 @@ $mulai=($currentPage - 1) * $pageSize;
 					</tr>
 	
 				<?php
-					$data = $lowongan->daftar_lo($mulai,$pageSize);
-//					echo $mulai;
-//					echo $pageSize; 
+					$data = $lowongan->daftar_lo($mulai,$pageSize); 
 					if($data!=NULL){
 						foreach ($data as $cari){
 				?>				
