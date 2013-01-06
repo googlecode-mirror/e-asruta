@@ -6,9 +6,10 @@ include '../lib/cariasisten_dao.php';
 include '../lib/cari.asisten.php';
 
 $id= $_GET['id'];
-$id_asisten=mysql_real_escape_string($id);
-$asisten= new CariAsisten_Dao();
-$hasil=$asisten->cariPencarian($id_asisten);
+$kd_lowongan=mysql_real_escape_string($id);
+$cari= new CariAsisten_Dao();
+$cariasisten= new Lowongan();
+$hasil=$cari->cariPencarian($kd_lowongan);
 if($_POST){
 $cariasisten->kd_jenislo=1;
 $cariasisten->kd_keahlian=$_POST['keterampilan'];
@@ -17,11 +18,11 @@ $cariasisten->lokasi=$_POST['lokasi'];
 $cariasisten->hari_kerja=$_POST['hari_kerja'];
 $cariasisten->menginap=$_POST['menginap'];
 $cariasisten->jam_kerja=$_POST['jam_kerja'];
-	if(empty($cariasisten->pembuat_lamar) || empty($cariasisten->kd_keahlian) || empty($cariasisten->gaji) || 
-		empty($cariasisten->lokasi) || empty($cariasisten->hari_kerja) || empty($cariasisten->menginap) || empty($cariasisten->jam_kerja)){
+	if(empty($cariasisten->kd_keahlian) || empty($cariasisten->gaji) || empty($cariasisten->lokasi) || 
+			empty($cariasisten->hari_kerja) || empty($cariasisten->menginap) || empty($cariasisten->jam_kerja)){
 		echo "Semua data harus diisi";
 	}else{
-		$cari->tambahPencarian($cariasisten);
+		$cari->ubahPencarian($kd_lowongan,$cariasisten);
 		header('location:lihat_asisten.php');
 	}
 }
@@ -30,7 +31,7 @@ $cariasisten->jam_kerja=$_POST['jam_kerja'];
 
 		<div id="contenttext">
 			<div class="bodytext" style="padding:12px;" align="justify">
-				<form method="post" action="action.cariasisten.php">
+				<form method="post" action="">
 				<table>
 					<tr>
 						<td>Keterampilan</td><td><input name="keterampilan" type="text" value="<?php echo $hasil->kd_keahlian; ?>"/></td> 

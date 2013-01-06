@@ -15,6 +15,7 @@ $mulai=($currentPage - 1) * $pageSize;
 ?>
 		<div id="contenttext">
 			<div class="bodytext" style="padding:12px;" align="justify">
+				<h4>Daftar Pencarian Asisten Pribadi</h4>
 				 <form method="get">
 					Halaman :
 					<select name="page" with="5" onchange="this.form.submit();">
@@ -30,12 +31,13 @@ $mulai=($currentPage - 1) * $pageSize;
 					
 				<table border="2" align="left" class="table table-striped">
 					<tr>
-						<td>Keterampilan</td>
+						<td>Kode Lowongan dan Keterampilan</td>
 						<td>Gaji</td>
 						<td>Lokasi</td>
-						<td>Jam Kerja</td>
-						<td>Hari Kerja</td>
-						<td>Menginap Tidak?</td> 
+						<td>Jam dan Hari Kerja</td>
+						<td>Menginap</td> 
+						<td>Asisten</td>
+						<td>Status</td>
 						<td>Aksi</td>
 					</tr>
 	
@@ -46,19 +48,26 @@ $mulai=($currentPage - 1) * $pageSize;
 					if($data!=NULL){
 						foreach ($data as $cari){
 				?>				
-				   <tr>	<td><?php echo $cari->kd_keahlian; ?></td>
+				   <tr>	<td><?php echo '<a href="lihat_lamaran.php?id='.$cari->kd_lowongan.'">'.$cari->kd_lowongan.' '.$cari->jns_keahlian.'</a>';?></td>
 						<td><?php echo $cari->gaji;?></td>
 						<td><?php echo $cari->lokasi; ?></td>
-						<td><?php echo $cari->jam_kerja; ?></td>
-						<td><?php echo $cari->hari_kerja; ?></td>
+						<td><?php echo $cari->jam_kerja."<br>".$cari->hari_kerja; ?></td>
 						<td><?php echo $cari->menginap; ?></td>
-						<td><?php echo '<a href="form_ubahasisten.php?id='.$cari->kd_lowongan.'" class="icon-pencil"></a>' ; ?> | <?php echo '<a href="tanya_hapus.php?id='.$cari->kd_lowongan.'" class="icon-trash"></a>';?></td>
+						<td><?php echo $cari->kd_asisten; ?></td>
+						<td><?php if($cari->kd_asisten==''){
+							echo "Tersedia";
+						}else{
+							echo "Sudah Terisi";
+						}
+						?></td>
+						<td><?php echo '<a href="form_ubahasisten.php?id='.$cari->kd_lowongan.'" class="icon-pencil"></a>' ; ?> <?php echo '<a href="tanya_hapus.php?id='.$cari->kd_lowongan.'" class="icon-trash"></a>';?></td>
 						</tr>
 						
 				<?php 	}
 					} ?>
 				</table>
 			</div>
-						<td><?php echo '<a href="form_cariasisten.php?id='.$cari->kd_lowongan.'" class="btn btn-primary">Rekam Baru</a>' ; ?></td>
+			<td><?php echo '<a href="form_cariasisten.php?id='.$cari->kd_lowongan.'" class="btn btn-primary">Rekam Baru</a>' ; ?></td>
+						</div>
 		</div>
 <?php include 'footer.php'; ?>

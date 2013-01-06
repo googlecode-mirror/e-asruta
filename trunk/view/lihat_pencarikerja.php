@@ -31,12 +31,11 @@ $mulai=($currentPage - 1) * $pageSize;
 				<table border="2" align="left" class="table table-striped">
 					<tr>
 						<td>Asisten dan Biro</td>
-						<td>Gaji</td>
+						<td>Kontak</td>
 						<td>Lokasi</td>
-						<td>Jam Kerja</td>
-						<td>Hari Kerja</td>
-						<td>Menginap Tidak?</td> 
-						<td>Aksi</td>
+						<td>Jam dan Hari Kerja</td>
+						<td>Gaji</td>
+						<td>Menginap</td> 
 					</tr>
 	
 				<?php
@@ -46,15 +45,11 @@ $mulai=($currentPage - 1) * $pageSize;
 					if($data!=NULL){
 						foreach ($data as $cari){
 				?>				
-				   <tr>	<td><?php echo $cari->kd_asisten; 
-								  echo '<br>';
-								  echo $cari->biro_jasa;
-							?>
-						</td>
-						<td><?php echo $cari->gaji;?></td>
+				   <tr>	<td><?php echo $cari->nm_asisten."<br>".$cari->nama_biro;?></td>
+						<td><?php echo $cari->hape;?></td>
 						<td><?php echo $cari->lokasi; ?></td>
-						<td><?php echo $cari->jam_kerja; ?></td>
-						<td><?php echo $cari->hari_kerja; ?></td>
+						<td><?php echo $cari->jam_kerja."<br>".$cari->jam_kerja; ?></td>
+						<td><?php echo $cari->gaji; ?></td>
 						<td><?php echo $cari->menginap; ?></td>
 						</tr>
 						
