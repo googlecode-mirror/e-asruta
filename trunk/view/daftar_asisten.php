@@ -1,13 +1,13 @@
 <?php
 include_once 'header.php';
-include_once 'sidebar.php';
+include_once 'sidebar_birojasa.php';
 include '../lib/birojasa_dao.php';
 include '../lib/birojasa.php';
 
-$kd_member="select kd_member from members where kd_user = $_SESSION[kduser]";
+$kd_member = $_SESSION['kduser'];
 
-$daftar = new birojasa_Dao();
-$data = $daftar->daftar_asisten();
+$daftar = new birojasa_dao();
+$data = $daftar->daftar_asisten($kd_member);
 ?>
 		<div id="contenttext">
 			<div class="bodytext" style="padding:12px;" align="justify">
@@ -39,7 +39,7 @@ $data = $daftar->daftar_asisten();
 				<?php 	}
 					} ?>
 				</table>
-				<td><?php echo '<a href="form_tambahasisten.php?id='.$list->kd_member.'" class="btn btn-primary">Rekam Baru</a>' ; ?></td>
+				<td><?php echo '<a href="form_tambahasisten.php?id='.$kd_member.'" class="btn btn-primary">Rekam Baru</a>' ; ?></td>
 			</div>
 		</div>
 <?php include 'footer.php'; ?>

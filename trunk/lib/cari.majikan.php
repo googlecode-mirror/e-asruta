@@ -17,4 +17,5 @@ class CariMajikan{
 	var $jam_kerja;
 	var $menginap;
 	var $lokasi;
+	var $kd_asisten;
 }

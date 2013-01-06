@@ -1,6 +1,6 @@
 <?php
 include_once 'header.php';
-include_once 'sidebar.php';
+include_once 'sidebar_birojasa.php';
 include '../config/waktu.php';
 include '../lib/birojasa_dao.php';
 require_once '../lib/birojasa.php';
