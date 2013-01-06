@@ -53,7 +53,7 @@
 		$koneksi->tutupdb();
 	
 	}
-        }
+    
         
         function hapus_asisten($kd_asisten){
             $koneksi = new Koneksi();
@@ -94,7 +94,7 @@
 			$koneksi->tutupdb();
         }
 		
-		function daftar_asisten(){
+		function daftar_asisten($kd_member){
 			$koneksi = new Koneksi();
 			
 			$koneksi->pilihkonekdb();
@@ -108,15 +108,17 @@
 			tmpt_lahirasisten,
 			kota_asisten,
 			no_idasisten
-			
 			From
-			
-			asisten";
+			asisten
+			Where
+			kd_member = $kd_member
+			";
 			
 			mysql_query($sql);
 		
 			$koneksi->tutupdb();
 	}
+}
 
 
 ?>

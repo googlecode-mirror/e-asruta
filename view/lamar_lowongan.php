@@ -1,6 +1,6 @@
 <?php
 include_once 'header.php';
-include_once 'sidebar.php';
+include_once 'sidebar_birojasa.php';
 include '../lib/carimajikan_dao.php';
 include '../lib/cari.majikan.php';
 
@@ -8,7 +8,9 @@ include '../lib/cari.majikan.php';
 $lowongan = new CariMajikan_Dao();
 $id= $_GET['id'];
 $kd_lowongan=mysql_real_escape_string($id);
-
+ //$_POST['asisten'];
+//$kd_asisten=mysql_real_escape_string($id2);
+//$lowongan->lamar($kd_lowongan, $kd_asisten);
 ?>
 	
 	<div id="contenttext">
@@ -43,24 +45,32 @@ $kd_lowongan=mysql_real_escape_string($id);
 				<?php 	}
 					} ?>
 			</table>
-			<fieldset>
-			<form class="form-horizontal" id="edithere" method='post' action='action_lamar.php'>
-			<div class="control-group">  
-            <label class="control-label" for="select01">Asisten Yang Akan Di Lamarkan</label>  
-            <div class="controls">  
-              <select id="select01">  
-                <?php 
-				$lowongan->cari_lamar();				
-				?>
-              </select>  
-            </div>  
-          </div>
-		   <div class="form-actions">  
-            <button type="submit" name="submit" class="btn btn-primary">Lamar</button>  
-            <a class="btn" href="../view/lihat_lowongan.php">Cancel</a>  
-          </div>
-		</form>
-		</fieldset>
-
+			
+			<form method="post" action="">	
+				<label for="select"><select name="asisten" value="asisten" size="1"> 
+					<option>
+						<?php  
+						$lowongan->cari_lamar();
+						?> 
+						</option>
+					</select>
+				   <input type="submit" name="Submit" value="Submit">
+				</form>	
+				
+			<?php
+				if(isset($_POST['Submit'])) 
+				{ 
+					//echo $_POST['asisten'];
+					//echo $kd_lowongan;
+					$kd_asisten = $_POST['asisten'];
+					//$kd_asisten=mysql_real_escape_string($id2);
+					//$xx = 3;
+					//$yy = 14;
+					$lowongan->lamar($kd_asisten, $kd_lowongan); 
+				}
+			?>
+	</div>
+	</div>
+	
 
 <?php include 'footer.php'; ?>

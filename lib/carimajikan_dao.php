@@ -167,18 +167,23 @@
 
 			 while(list($kode, $nama)=mysql_fetch_row($result)) {
 				echo "<option value=\"".$kode."\">".$nama."</option>";
+				//echo "<option selected value=\"".$kode."\">".$nama."</option>";
+				//	}else {
+				//	echo "<option value='$cars[$i]'>$cars[$i]</option>";
+       
 			}
 			
-			//$options="";
-			//	while ($row=mysql_fetch_array($result)) {
-			//		$id=$row["kd_asisten"];
-			//		$nama=$row["nm_asisten"];
-			//		$options.="<OPTION VALUE=\"$id\">".$nama;
+			//$result = mysql_query($sql) or die (mysql_error());  
+			//	while ($row = mysql_fetch_array($result)) 
+			//	{ 
+			//			$id=$row["kd_asisten"]; 
+			//			$nama=$row["nm_asisten"];  
+			//			$options.="<OPTION VALUE=\"$id\">".$nama; 
 			//	}
 				
     		$koneksi->tutupdb();
     		
-    		return $cari;
+    		return $list;
         }
 		
 		function hitungHalaman() {
@@ -196,8 +201,31 @@
 		return $jumlah['total'];
 	}
 	
-		function lamar(){
+		function lamar($kd_lowongan, $kd_asisten){
+		$koneksi = new Koneksi();
+    	$koneksi->pilihkonekdb();
 		
+		//echo $kd_asisten;
+		//echo $kd_lowongan;
+		
+		$sql =	"
+		INSERT INTO 
+		`detail_lowongan`
+		(`kd_lowongan`, `kd_member`, `kd_asisten`) 
+		VALUES 
+		((select kd_lowongan from lowongan where kd_lowongan = '".$kd_lowongan."'), 
+		(select kd_member from asisten where kd_asisten = '".$kd_asisten."'), 
+		(select kd_asisten from asisten where kd_asisten = '".$kd_asisten."'))  
+		";
+		
+		$berhasil=mysql_query($sql) or die(mysql_error());
+		if($berhasil){
+			echo "berhasil";
+		} else {
+			echo "ngga berhasil :(";
+		}
+		
+		$koneksi->tutupdb();
 	}
 	
     }
