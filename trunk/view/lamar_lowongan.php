@@ -66,7 +66,7 @@ $kd_lowongan=mysql_real_escape_string($id);
 					//$kd_asisten=mysql_real_escape_string($id2);
 					//$xx = 3;
 					//$yy = 14;
-					$lowongan->lamar($kd_asisten, $kd_lowongan); 
+					$lowongan->lamar($kd_lowongan, $kd_asisten); 
 				}
 			?>
 	</div>

@@ -205,17 +205,20 @@
 		$koneksi = new Koneksi();
     	$koneksi->pilihkonekdb();
 		
-		//echo $kd_asisten;
-		//echo $kd_lowongan;
+		echo $kd_asisten;
+		echo $kd_lowongan;
 		
 		$sql =	"
 		INSERT INTO 
 		`detail_lowongan`
-		(`kd_lowongan`, `kd_member`, `kd_asisten`) 
-		VALUES 
-		((select kd_lowongan from lowongan where kd_lowongan = '".$kd_lowongan."'), 
-		(select kd_member from asisten where kd_asisten = '".$kd_asisten."'), 
-		(select kd_asisten from asisten where kd_asisten = '".$kd_asisten."'))  
+		(`KD_LOWONGAN`, `KD_MEMBER`, `KD_ASISTEN`) 
+		SELECT 
+		b.kd_lowongan, a.kd_member, a.kd_asisten 
+		FROM asisten a 
+		JOIN lowongan b 
+		WHERE b.kd_lowongan = '".$kd_lowongan."'
+		AND
+		a.kd_asisten = '".$kd_asisten."'
 		";
 		
 		$berhasil=mysql_query($sql) or die(mysql_error());
