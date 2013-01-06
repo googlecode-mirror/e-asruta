@@ -15,6 +15,7 @@
     		
     		$sql = "
     		SELECT 
+			a.kd_lowongan,
 			d.nm_member,
     		b.jenis_lowongan as lowongan,
     		c.jns_keahlian as keahlian,
@@ -37,6 +38,59 @@
             a.kd_keahlian = c.kd_keahlian
 			ORDER BY kd_lowongan ASC
 			LIMIT $halaman,$limit
+    		";
+    		
+    		$list_cari = array();
+			$res = mysql_query($sql);
+			if($res){
+				while($row = mysql_fetch_assoc($res)){
+					$cari = new CariMajikan();
+					$cari->kd_lowongan=$row['kd_lowongan'];
+					$cari->nm_member=$row['nm_member'];
+					$cari->jenis_lowongan=$row['lowongan'];
+					$cari->jns_keahlian=$row['keahlian'];
+					$cari->hari_kerja=$row['hari_kerja'];
+					$cari->jam_kerja=$row['jam_kerja'];
+					$cari->menginap=$row['menginap'];
+					$cari->lokasi=$row['lokasi'];
+					$cari->gaji=$row['gaji'];		
+					
+					$list_cari[] = $cari;
+				}
+			}
+		
+		$koneksi->tutupdb();
+		return $list_cari;
+    	}
+		
+		function daftar_low($kd_lowongan){
+    	
+    		$koneksi = new Koneksi();
+    		$koneksi->pilihkonekdb();
+    		
+    		$sql = "
+    		SELECT 
+			d.nm_member,
+    		b.jenis_lowongan as lowongan,
+    		c.jns_keahlian as keahlian,
+			a.hari_kerja,
+    		a.jam_kerja,
+    		a.menginap,
+            a.lokasi,
+            a.gaji
+    		FROM
+    		lowongan as a
+    		JOIN
+    		keahlian as c
+            JOIN
+            jenis_lowongan as b
+			JOIN
+			members as d
+    		WHERE
+            a. kd_jenislo = b.kd_jenislo
+            AND
+            a.kd_keahlian = c.kd_keahlian
+			ORDER BY kd_lowongan ASC
     		";
     		
     		$list_cari = array();
@@ -90,47 +144,29 @@
             a.kd_jenislo like ";
         }
         
-        public function cari_lamar($kd_member){
+        public function cari_lamar(){
             $koneksi = new Koneksi();
     		$koneksi->pilihkonekdb();
     		
     		$sql = "
     		SELECT 
-            a.nm_asisten,
-            b.nm_member,
-            c.jenis_lowongan
-            
+			nm_asisten
             from
-            asisten a
-            join
-            members b,
-            join
-            lowongan c,
-            join
-            detail_lowongan d
-            
+            asisten 
             where
-            a.kd_asisten = d.kd_asisten
-            and
-            b.kd_member = a.kd_member";
+            kd_member = 2";
             
-			
-			$cari = false;
-    		
-    		$res = mysql_query($sql);
-    		
-    		if($res){
-    		
-    			$row = mysql_fetch_assoc($res);
-    		
-    			$cari = new CariMajikan();
-    			$cari->nm_asisten=$row['nm_asisten'];
-    			$cari->nm_member=$row['nm_member'];
-    			$cari->majikan=$row['majikan'];
-    			$cari->jenis_lowongan=$row['jenis_lowongan'];		
-    		
-    		}
-    		
+			$result=mysql_query($sql); 
+
+			$options=""; 
+
+				while ($row=mysql_fetch_array($result)) { 
+
+					$id=$row["kd_asisten"]; 
+					$nama=$row["nm_asisten"]; 
+					//$options.="<OPTION VALUE=\"$id\">".$nama; 
+				} 
+				
     		$koneksi->tutupdb();
     		
     		return $cari;
