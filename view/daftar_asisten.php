@@ -32,7 +32,7 @@ $data = $daftar->daftar_asisten($kd_member);
 						<td><?php echo $list->kota_asisten; ?></td>
 						<td><?php echo $list->tmpt_lahirasisten; ?></td>
 						<td><?php echo $list->tgl_lahirasisten; ?></td>
-						<td><?php echo '<a href="form_editasisten.php?id='.$list->kd_asisten.'" class="icon-pencil"></a>' ; ?> | <?php echo '<a href="hapus_dataasisten.php?id='.$list->kd_asisten.'" class="icon-trash"></a>';?></td>
+						<td><?php echo '<a href="form_editasisten.php?id='.$list->kd_asisten.'" class="icon-pencil"></a>' ; ?> | <?php echo '<a href="action.hapusdata.php?id='.$list->kd_asisten.'" class="icon-trash"></a>';?></td>
 						</tr>
 						
 				<?php 	}

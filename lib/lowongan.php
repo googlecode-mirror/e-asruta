@@ -20,7 +20,6 @@ class Lowongan{
 	var $lokasi;
 	var $menginap;
 	var $jns_keahlian;
-	var $nm_asisten;
 	var $ket_status;
 	var $biro_jasa;
 	var $hape;
