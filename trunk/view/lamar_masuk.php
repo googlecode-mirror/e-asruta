@@ -45,7 +45,7 @@ $mulai=($currentPage - 1) * $pageSize;
 				   <tr>	<td><?php echo $cari->nm_member; ?></td>
 						<td><?php echo $cari->nm_asisten;?></td>
 						<td><?php echo $cari->ket_status; ?></td>
-						<td><?php echo '<a href="lamar_lowongan.php?id='.$cari->kd_lowongan.'" class="icon-pencil"></a>' ; ?> </td>
+						<td><?php echo '<a href="action.hapuslamar.php?id='.$cari->kd_lowongan.'&'.$cari->kd_asisten.'" class="icon-trash"></a>';?> </td>
 						</tr>
 						
 				<?php 	}

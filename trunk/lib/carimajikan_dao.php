@@ -126,7 +126,9 @@
     		$koneksi->pilihkonekdb();
     		
     		$sql = "
-    		SELECT 
+    		SELECT
+			d.kd_lowongan,
+			d.kd_asisten,
     		a.nm_member,
     		b.nm_asisten,
             c.ket_status
@@ -159,6 +161,8 @@
 			if($res){
 				while($row = mysql_fetch_assoc($res)){
 					$cari = new Lowongan();
+					$cari->kd_lowongan=$row['kd_lowongan'];
+					$cari->kd_asisten=$row['kd_asisten'];
 					$cari->nm_member=$row['nm_member'];
 					$cari->nm_asisten=$row['nm_asisten'];
 					$cari->ket_status=$row['ket_status'];
@@ -169,6 +173,25 @@
 		
 		$koneksi->tutupdb();
 		return $list_cari;
+        }
+		
+		function hapus_lamar($kd_lowongan, $kd_asisten){
+            $koneksi = new Koneksi();
+            $koneksi->pilihkonekdb();
+		
+    		$sql = "
+    		DELETE
+    		FROM
+    		detail_lowngan
+    		WHERE
+			kd_lowongan = '".$kd_lowongan."'
+			AND
+    		kd_asisten = '".$kd_asisten."'
+    		";
+		
+		mysql_query($sql);
+		
+		$koneksi->tutupdb();
         }
         
         public function cari_lamar(){
