@@ -39,7 +39,7 @@ class Testimoni{
 	}
 	
 	
-	function lihatTesti(){
+	function lihatTesti($halaman,$limit){
 		$koneksi = new Koneksi();
 		
 		$koneksi->pilihkonekdb();
@@ -57,6 +57,7 @@ class Testimoni{
 		testimoni as a
 		WHERE
 		a.kd_member=b.kd_member
+		LIMIT $halaman,$limit
 		";
 		
 		$testi = mysql_query($sql);
@@ -74,5 +75,20 @@ class Testimoni{
 		$koneksi->tutupdb();
 		
 		return $daftar_testimoni;
+	}
+	
+	function hitungTestimoni() {
+		$koneksi = new Koneksi();
+		$koneksi->pilihkonekdb();
+		$sql="
+			SELECT 
+			count(*) as total 
+			FROM 
+			testimoni
+		";
+		
+		$itung = mysql_query($sql);
+		$jumlah = mysql_fetch_array($itung);
+		return $jumlah['total'];
 	}
 }
