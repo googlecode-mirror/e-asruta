@@ -3,9 +3,9 @@ include_once 'header.php';
 include_once 'sidebar.php';
 include '../config/waktu.php';
 include '../lib/testimoni.php';
-include '../lib/testimoni_dao.php';
+
 $testimoni=new Testimoni();
-$testi=new Testimoni_Dao();
+
 ?>
 
 		<div id="contenttext">
@@ -18,7 +18,7 @@ $testi=new Testimoni_Dao();
 				if(empty($testimoni->isi_testi)){
 						echo "Anda belum mengisi testimoni";
 					}else{
-						$testi->isiTestimoni($testimoni);
+						$testimoni->isiTestimoni($testimoni);
 						header('location:lihat_testimoni.php');
 					}
 				}

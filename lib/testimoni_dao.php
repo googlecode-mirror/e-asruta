@@ -5,7 +5,7 @@
  */
  
  class Testimoni_Dao{
- 
+ /*
 	function isiTestimoni(Testimoni $testimoni){
 		
 		$koneksi = new Koneksi();
@@ -72,5 +72,6 @@
 		
 		return $daftar_testimoni;
 	}
+	*/
 
  }
