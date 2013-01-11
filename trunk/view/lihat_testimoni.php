@@ -1,10 +1,9 @@
 <?php
 include_once 'header.php';
 include_once 'sidebar.php';
-include '../lib/testimoni_dao.php';
 include '../lib/testimoni.php';
 
-$testi=new Testimoni_Dao();
+$testi=new Testimoni();
 $data=$testi->lihatTesti();
 ?>
 		<div id="contenttext">
